@@ -1,19 +1,48 @@
 // 할일 등록
 
 const TodoRegist = function () {
-  const page = document.createElement('div');
-  const saveBtn = document.createElement('button');
-  saveBtn.innerHTML = '저장';
-  const cancelBtn = document.createElement('button');
-  cancelBtn.innerHTML = '취소';
-  const inputTitle = document.createElement('input');
-  const inputDetail = document.createElement('input');
+  const page = document.createElement("div");
+  const saveBtn = document.createElement("button");
+  saveBtn.innerHTML = "저장";
+  saveBtn.type = "submit";
+  const cancelBtn = document.createElement("button");
+  cancelBtn.innerHTML = "취소";
+  const inputTitle = document.createElement("input");
+  const inputContent = document.createElement("input");
 
+  const todoRegistForm = document.createElement("form");
+  todoRegistForm.appendChild(saveBtn);
+  todoRegistForm.appendChild(cancelBtn);
+  todoRegistForm.appendChild(inputTitle);
+  todoRegistForm.appendChild(inputContent);
 
-  page.appendChild(saveBtn);
-  page.appendChild(cancelBtn);
-  page.appendChild(inputTitle);
-  page.appendChild(inputDetail);
+  todoRegistForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const titleValue = inputTitle.value;
+    const contentValue = inputContent.value;
+    if (titleValue && contentValue) {
+      try {
+        const response = await axios.post(
+          "http://localhost:33088/api/todolist",
+          {
+            title: titleValue,
+            content: contentValue,
+          }
+        );
+        if (response.status === 200) {
+          inputTitle.value = "";
+          inputContent.value = "";
+        }
+        console.log(response);
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      alert("제목과 내용을 모두 작성해주세요.");
+    }
+  });
+
+  page.appendChild(todoRegistForm);
 
   return page;
 };
