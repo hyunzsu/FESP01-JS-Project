@@ -42,6 +42,13 @@ const TodoRegist = function () {
     }
   });
 
+  cancelBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    page.style.display = "none";
+    inputTitle.value = "";
+    inputContent.value = "";
+  });
+
   page.appendChild(todoRegistForm);
 
   return page;
