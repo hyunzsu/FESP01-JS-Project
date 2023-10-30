@@ -34,6 +34,7 @@ const TodoRegist = function () {
         if (response.status === 200) {
           inputTitle.value = "";
           inputContent.value = "";
+          window.location.reload();
         }
       } catch (err) {
         console.error(err);
