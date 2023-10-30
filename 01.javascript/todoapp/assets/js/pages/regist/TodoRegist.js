@@ -1,18 +1,19 @@
 // 할일 등록
-import Header from '../../layout/Header.js';
-import Footer from '../../layout/Footer.js';
 
-const TodoRegist = function(){
+const TodoRegist = function () {
   const page = document.createElement('div');
-  page.setAttribute('id', 'page');
+  const saveBtn = document.createElement('button');
+  saveBtn.innerHTML = '저장';
+  const cancelBtn = document.createElement('button');
+  cancelBtn.innerHTML = '취소';
+  const inputTitle = document.createElement('input');
+  const inputDetail = document.createElement('input');
 
-  const content = document.createElement('div');
-  const text = document.createTextNode('등록 화면');
-  content.appendChild(text);
 
-  page.appendChild(Header('TODO App 등록'));
-  page.appendChild(content);
-  page.appendChild(Footer());
+  page.appendChild(saveBtn);
+  page.appendChild(cancelBtn);
+  page.appendChild(inputTitle);
+  page.appendChild(inputDetail);
 
   return page;
 };
