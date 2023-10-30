@@ -3,6 +3,7 @@
 const TodoRegist = function () {
   const page = document.createElement("div");
   page.setAttribute("class", "todo-regist");
+  page.style.display = "none";
   const saveBtn = document.createElement("button");
   saveBtn.innerHTML = "저장";
   saveBtn.type = "submit";
