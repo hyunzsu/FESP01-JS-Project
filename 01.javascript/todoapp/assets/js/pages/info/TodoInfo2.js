@@ -1,5 +1,6 @@
 import Header from "../../layout/Header.js";
 import Footer from "../../layout/Footer.js";
+import TodoDelete from "../delete/TodoDelete.js";
 
 const TodoInfo = async ({ _id }) => {
   try {
@@ -26,6 +27,23 @@ const TodoInfo = async ({ _id }) => {
     createTime.textContent = `${item.createdAt}`;
     deleteButton.textContent = "삭제";
     editButton.textContent = "수정";
+
+    /* 삭제, 취소 기능 */
+    deleteButton.addEventListener("click", () => {
+      // 버튼이 '삭제 모드'일 경우 TodoDelete 기능 동작
+      if (deleteButton.textContent === "삭제") {
+        TodoDelete(_id);
+      } else {
+        // '수정 모드'일 경우, 값을 초기화학고 input 속성 비활성화
+        title.value = `${item.title}`;
+        content.value = `${item.content}`;
+        title.setAttribute("disabled", true);
+        content.setAttribute("disabled", true);
+
+        deleteButton.textContent = "삭제";
+        editButton.textContent = "수정";
+      }
+    });
 
     /* 수정-삭제 기능 이벤트 함수 */
     editButton.addEventListener("click", async (e) => {
