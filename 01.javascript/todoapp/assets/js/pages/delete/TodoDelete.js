@@ -5,6 +5,9 @@ const TodoDelete = async (_id) => {
       `http://localhost:33088/api/todolist/${_id}`
     );
     console.log(response);
+    if (response.status === 200) {
+      window.location.reload();
+    }
   } catch (err) {
     console.log(err.message);
   }

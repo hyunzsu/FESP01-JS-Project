@@ -57,6 +57,9 @@ const saveEditedTodo = async (
     );
     cancelEditMode(editButton, deleteButton, title, content);
     console.log("수정해서 전송한 내역 -> ", response.data);
+    if (response.status === 200) {
+      window.location.reload();
+    }
   } catch (error) {
     console.error("수정내역 전송 에러", error);
   }
