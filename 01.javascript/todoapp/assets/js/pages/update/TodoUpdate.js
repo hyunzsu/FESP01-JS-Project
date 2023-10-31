@@ -65,6 +65,11 @@ const saveEditedTodo = async (
   }
 
   try {
+    if (title.value === "" || content.value === "") {
+      alert("제목과 내용을 모두 작성해주세요!");
+      return;
+    }
+
     if (prevTitleValue !== title.value || prevContentValue !== content.value) {
       const response = await axios.patch(
         `http://localhost:33088/api/todolist/${_id}`,
