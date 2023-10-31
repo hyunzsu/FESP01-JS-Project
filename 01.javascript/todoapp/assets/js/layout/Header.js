@@ -18,6 +18,7 @@ const Header = function (title) {
   function filter(active, completed) {
     const todoList = document.querySelectorAll("input[type=checkbox]");
     const infoContainer = document.querySelector(".info-container");
+    const registContainer = document.querySelector(".regist-container");
 
     todoList.forEach((todo) => {
       if (!todo.checked) {
@@ -27,7 +28,15 @@ const Header = function (title) {
       }
     });
 
-    infoContainer.style.display = "none";
+    // infoContainer가 null일 경우 에러방지
+    if (infoContainer) {
+      infoContainer.style.display = "none";
+    }
+
+    // registContainer가 null일 경우 에러방지
+    if (registContainer) {
+      registContainer.style.display = "none";
+    }
   }
   allBtn.addEventListener("click", () => filter(true, true));
   activeBtn.addEventListener("click", () => filter(true, false));
