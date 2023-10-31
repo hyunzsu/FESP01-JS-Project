@@ -7,6 +7,7 @@ const Header = function (title) {
   const filterBtns = document.createElement("div");
   const allBtn = document.createElement("button");
   allBtn.innerHTML = "All";
+  allBtn.className = "active";
   const activeBtn = document.createElement("button");
   activeBtn.innerHTML = "Active";
   const completedBtn = document.createElement("button");
@@ -15,11 +16,21 @@ const Header = function (title) {
   filterBtns.appendChild(activeBtn);
   filterBtns.appendChild(completedBtn);
 
-  function filter(active, completed) {
+  function filter(active, completed, target) {
     const todoList = document.querySelectorAll("input[type=checkbox]");
     const infoContainer = document.querySelector(".info-container");
     const registContainer = document.querySelector(".regist-container");
     const focusItem = document.querySelector(".focus-item");
+
+    // 필터 버튼 색상 및 언더바 추가
+    const buttons = filterBtns.querySelectorAll("button");
+    buttons.forEach((item) => {
+      if (target === item) {
+        item.classList.add("active");
+      } else {
+        item.removeAttribute("class");
+      }
+    });
 
     todoList.forEach((todo) => {
       if (!todo.checked) {
@@ -40,9 +51,11 @@ const Header = function (title) {
       registContainer.style.display = "none";
     }
   }
-  allBtn.addEventListener("click", () => filter(true, true));
-  activeBtn.addEventListener("click", () => filter(true, false));
-  completedBtn.addEventListener("click", () => filter(false, true));
+  allBtn.addEventListener("click", (e) => {
+    filter(true, true, e.target);
+  });
+  activeBtn.addEventListener("click", (e) => filter(true, false, e.target));
+  completedBtn.addEventListener("click", (e) => filter(false, true, e.target));
 
   headerNode.appendChild(h1);
   headerNode.appendChild(filterBtns);

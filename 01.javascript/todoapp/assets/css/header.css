@@ -28,6 +28,7 @@ header button {
   margin: 0 10px;
 }
 
-header button:first-child {
+header button.active {
   color: var(--color-main);
+  text-decoration: underline;
 }
