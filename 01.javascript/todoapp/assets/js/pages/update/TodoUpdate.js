@@ -20,6 +20,7 @@ const TodoUpdate = (_id, editButton, deleteButton, title, content) => {
 const enableEditMode = (editButton, deleteButton, title, content) => {
   title.removeAttribute("disabled");
   content.removeAttribute("disabled");
+  title.focus();
   editButton.textContent = "완료";
   deleteButton.textContent = "취소";
 };

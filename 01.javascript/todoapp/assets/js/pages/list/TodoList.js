@@ -26,6 +26,8 @@ const TodoList = async () => {
     if (todoInfo) {
       todoInfo.remove();
     }
+    const inputTitle = document.querySelector(".regist-title");
+    inputTitle.focus();
   });
 
   // 각 Todo 아이템을 생성하는 함수
