@@ -19,9 +19,9 @@ const Header = function (title) {
     const todoList = document.querySelectorAll("input[type=checkbox]");
     todoList.forEach((todo) => {
       if (!todo.checked) {
-        todo.parentNode.style.display = active ? "block" : "none";
+        todo.parentNode.style.display = active ? "flex" : "none";
       } else {
-        todo.parentNode.style.display = completed ? "block" : "none";
+        todo.parentNode.style.display = completed ? "flex" : "none";
       }
     });
   }
