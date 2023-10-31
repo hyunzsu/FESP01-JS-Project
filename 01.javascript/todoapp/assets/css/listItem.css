@@ -1,7 +1,7 @@
 .todolist {
   width: 520px;
-  max-height: 300px; /* 원하는 높이로 조정 */
-  overflow-y: auto; /* 세로 스크롤을 추가 */
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .todo-item {
@@ -12,6 +12,7 @@
   font-size: 20px;
   align-items: center;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .todo-item::after {
@@ -27,6 +28,7 @@
   height: 20px;
   margin: 0 20px;
   line-height: normal; /* 글자가 살짝 위로 올라가 있는 현상 수정 필요 */
+  cursor: pointer;
 }
 
 .focus-item {
