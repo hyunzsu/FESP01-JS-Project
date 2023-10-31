@@ -15,14 +15,7 @@ const TodoUpdate = (
       enableEditMode(editButton, deleteButton, title, content);
     } else {
       /* 데이터 저장 + 수정불가 모드로 변경 */
-      await saveEditedTodo(
-        _id,
-        editButton,
-        deleteButton,
-        title,
-        content,
-        detailData
-      );
+      await saveEditedTodo(_id, editButton, deleteButton, title, content);
     }
   });
   /* 삭제 <-> 취소 버튼 기능 */
@@ -51,8 +44,7 @@ const saveEditedTodo = async (
   editButton,
   deleteButton,
   title,
-  content,
-  detailData
+  content
 ) => {
   const updatedData = {
     title: title.value,
@@ -60,8 +52,17 @@ const saveEditedTodo = async (
   };
 
   // 수정 전의 값
-  const prevTitleValue = detailData.title;
-  const prevContentValue = detailData.content;
+  let prevTitleValue;
+  let prevContentValue;
+
+  // 수정 전의 값을 불러오는 코드
+  try {
+    const response = await axios(`http://localhost:33088/api/todolist/${_id}`);
+    prevTitleValue = response.data.item.title;
+    prevContentValue = response.data.item.content;
+  } catch (error) {
+    console.error("데이터를 불러오지 못했습니다", error);
+  }
 
   try {
     if (prevTitleValue !== title.value || prevContentValue !== content.value) {
