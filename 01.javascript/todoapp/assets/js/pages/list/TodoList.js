@@ -11,6 +11,7 @@ const TodoList = async () => {
   page.classList.add("contents-container");
   registBtn.classList.add("regist-button");
 
+
   // 등록버튼 클릭 이벤트 처리
   registBtn.addEventListener("click", () => {
     const todoRegist = document.querySelector(".regist-container");
@@ -36,7 +37,8 @@ const TodoList = async () => {
     checkbox.checked = item.done;
 
     // span 태그 생성 및 텍스트 내용
-    const title = document.createElement("span");
+    const title = document.createElement('span');
+    title.classList.add('title-item');
     title.innerText = item.title;
 
     checkbox.addEventListener("change", async (e) => {
@@ -56,6 +58,14 @@ const TodoList = async () => {
       if (todoRegist.style.display === "block") {
         todoRegist.style.display = "none";
       }
+
+      // 이미 focus-item 클래스를 가지고 있는 ul 요소를 찾아서 클래스 제거
+      const currentFocusItem = document.querySelector('.focus-item');
+      if (currentFocusItem) {
+        currentFocusItem.classList.remove('focus-item');
+      }
+      todoItem.classList.add('focus-item');
+
 
       // 아이템 클릭 시 상세 정보 표시
       if (e.target !== checkbox) {

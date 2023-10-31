@@ -3,13 +3,21 @@ ul {
 }
 
 .todo-item {
-  font-size: 20px;
+  display: flex;
   height: 60px;
   margin: 10px 0;
-  display: flex;
+  border: 1px solid var(--color-border);
+  font-size: 20px;
   align-items: center;
   border-radius: 10px;
-  border: 1px solid var(--color-border);
+}
+
+.todo-item::after {
+  display: inline-block;
+  width: 10px;
+  height: 17px;
+  background: url(../img/right-icon.svg) no-repeat;
+  content: '';
 }
 
 .checkbox-item {
@@ -19,9 +27,23 @@ ul {
   line-height: normal; /* 글자가 살짝 위로 올라가 있는 현상 수정 필요 */
 }
 
-/* click 이벤트와 겹침 */
-.todo-item:hover {
+.focus-item {
   border: none;
   background-color: var(--color-sub);
   font-weight: 700;
+}
+
+.title-item {
+  overflow: hidden; /* 넘치는 컨텐츠를 가림 */
+  width: 420px;
+  white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
+  text-overflow: ellipsis;
+}
+
+.todo-item.focus-item::after {
+  display: inline-block;
+  width: 10px;
+  height: 17px;
+  background: url(../img/left-icon.svg) no-repeat;
+  content: '';
 }

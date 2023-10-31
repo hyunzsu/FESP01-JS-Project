@@ -17,13 +17,17 @@ const Header = function (title) {
 
   function filter(active, completed) {
     const todoList = document.querySelectorAll("input[type=checkbox]");
+    const infoContainer = document.querySelector(".info-container");
+
     todoList.forEach((todo) => {
       if (!todo.checked) {
-        todo.parentNode.style.display = active ? "block" : "none";
+        todo.parentNode.style.display = active ? "flex" : "none";
       } else {
-        todo.parentNode.style.display = completed ? "block" : "none";
+        todo.parentNode.style.display = completed ? "flex" : "none";
       }
     });
+
+    infoContainer.style.display = "none";
   }
   allBtn.addEventListener("click", () => filter(true, true));
   activeBtn.addEventListener("click", () => filter(true, false));
