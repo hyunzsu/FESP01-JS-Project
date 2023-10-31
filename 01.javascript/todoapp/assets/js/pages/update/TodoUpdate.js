@@ -1,14 +1,8 @@
 import TodoDelete from "../delete/TodoDelete.js";
+import fetchDetailData from "../fetch/fetchDetailData.js";
 
 /* [수정 모드] & [저장 모드] 변경 함수 */
-const TodoUpdate = (
-  _id,
-  detailData,
-  editButton,
-  deleteButton,
-  title,
-  content
-) => {
+const TodoUpdate = (_id, editButton, deleteButton, title, content) => {
   editButton.addEventListener("click", async () => {
     if (editButton.textContent === "수정") {
       /* 수정 가능 모드로 변경 */
@@ -19,7 +13,7 @@ const TodoUpdate = (
     }
   });
   /* 삭제 <-> 취소 버튼 기능 */
-  deleteTodo(_id, deleteButton, detailData, editButton, title, content);
+  deleteTodo(_id, deleteButton, editButton, title, content);
 };
 
 /* 수정 가능 모드 세팅*/
@@ -51,18 +45,10 @@ const saveEditedTodo = async (
     content: content.value,
   };
 
-  // 수정 전의 값
-  let prevTitleValue;
-  let prevContentValue;
-
   // 수정 전의 값을 불러오는 코드
-  try {
-    const response = await axios(`http://localhost:33088/api/todolist/${_id}`);
-    prevTitleValue = response.data.item.title;
-    prevContentValue = response.data.item.content;
-  } catch (error) {
-    console.error("데이터를 불러오지 못했습니다", error);
-  }
+  const detailData = await fetchDetailData(_id);
+  let prevTitleValue = detailData.title;
+  let prevContentValue = detailData.content;
 
   try {
     if (title.value === "" || content.value === "") {
@@ -92,18 +78,12 @@ const saveEditedTodo = async (
 };
 
 /* 삭제 <-> 취소 버튼 기능 */
-const deleteTodo = (
-  _id,
-  deleteButton,
-  detailData,
-  editButton,
-  title,
-  content
-) => {
-  deleteButton.addEventListener("click", () => {
+const deleteTodo = (_id, deleteButton, editButton, title, content) => {
+  deleteButton.addEventListener("click", async () => {
     if (deleteButton.textContent === "삭제") {
       TodoDelete(_id);
     } else {
+      const detailData = await fetchDetailData(_id);
       title.value = detailData.title;
       content.value = detailData.content;
       cancelEditMode(editButton, deleteButton, title, content);

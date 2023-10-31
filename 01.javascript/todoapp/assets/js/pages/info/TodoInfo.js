@@ -1,7 +1,5 @@
-import Header from "../../layout/Header.js";
-import Footer from "../../layout/Footer.js";
 import TodoUpdate from "../update/TodoUpdate.js";
-// import TodoDelete from "../delete/TodoDelete.js";
+import fetchDetailData from "../fetch/fetchDetailData.js";
 
 const TodoInfo = async ({ _id }) => {
   try {
@@ -17,7 +15,6 @@ const TodoInfo = async ({ _id }) => {
     /* 4. Todo Update 수정, 저장 기능 */
     TodoUpdate(
       _id,
-      detailData,
       pageElements.editButton,
       pageElements.deleteButton,
       pageElements.title,
@@ -71,12 +68,6 @@ const createPageElements = () => {
     editButton,
     deleteButton,
   };
-};
-
-/* 상세 내용 받아오는 함수 */
-const fetchDetailData = async (_id) => {
-  const response = await axios(`http://localhost:33088/api/todolist/${_id}`);
-  return response.data.item;
 };
 
 /* 받아온 데이터를 요소에 입력해주는 함수 */
