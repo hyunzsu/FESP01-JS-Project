@@ -24,6 +24,8 @@ const TodoList = async () => {
     /* todo 상세보기가 열려있으면 삭제 후 등록 페이지 노출 */
     const todoInfo = document.querySelector('.info-container');
     if (todoInfo) {
+      const todoItems = document.querySelectorAll(".todo-item");
+      todoItems.forEach((item) => item.classList.remove("focus-item"));
       todoInfo.remove();
     }
     const inputTitle = document.querySelector(".regist-title");
