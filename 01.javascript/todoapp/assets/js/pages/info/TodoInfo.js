@@ -33,6 +33,7 @@ const TodoInfo = async ({ _id }) => {
 /* 페이지 요소 생성 및 초기 세팅 */
 const createPageElements = () => {
   const detailContainer = document.createElement("div");
+
   const title = document.createElement("input");
   const createTime = document.createElement("div");
   const content = document.createElement("input");
@@ -40,9 +41,16 @@ const createPageElements = () => {
   const deleteButton = document.createElement("button");
   const editButton = document.createElement("button");
 
-  detailContainer.setAttribute("id", "page");
+  title.setAttribute("class", "title-input");
   title.setAttribute("disabled", true);
+  createTime.setAttribute("class", "time");
+  content.setAttribute("class", "content-input");
   content.setAttribute("disabled", true);
+
+  detailContainer.setAttribute("class", "info-container");
+  buttonContainer.setAttribute("class", "button-container");
+  deleteButton.setAttribute("class", "info-button delete");
+  editButton.setAttribute("class", "info-button edit");
 
   deleteButton.textContent = "삭제";
   editButton.textContent = "수정";
