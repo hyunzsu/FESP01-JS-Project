@@ -1,20 +1,81 @@
-// 할일 등록
 import Header from "../../layout/Header.js";
 import Footer from "../../layout/Footer.js";
+import TodoUpdate from "../update/TodoUpdate.js";
+// import TodoDelete from "../delete/TodoDelete.js";
 
-const TodoInfo = async function ({ _id } = {}) {
-  const page = document.createElement("div");
-  page.setAttribute("id", "page");
+const TodoInfo = async ({ _id }) => {
+  try {
+    /* 1. 페이지 요소 생성 및 초기 세팅 */
+    const pageElements = createPageElements();
 
-  const content = document.createElement("div");
-  const text = document.createTextNode(`_id=${_id} 상세 조회 화면`);
-  content.appendChild(text);
+    /* 2. 서버에 있는 TODO 상세 데이터 가져옴 */
+    const detailData = await fetchDetailData(_id);
 
-  page.appendChild(Header("TODO App 상세 조회"));
-  page.appendChild(content);
-  page.appendChild(Footer());
+    /* 3. 서버에 있는 데이터 값을 각 요소에 넣어줌 */
+    setData(pageElements, detailData);
 
-  return page;
+    /* 4. Todo Update 수정, 저장 기능 */
+    TodoUpdate(
+      _id,
+      detailData,
+      pageElements.editButton,
+      pageElements.deleteButton,
+      pageElements.title,
+      pageElements.content
+    );
+
+    return pageElements.detailContainer;
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+/* 페이지 요소 생성 및 초기 세팅 */
+const createPageElements = () => {
+  const detailContainer = document.createElement("div");
+  const title = document.createElement("input");
+  const createTime = document.createElement("div");
+  const content = document.createElement("input");
+  const buttonContainer = document.createElement("div");
+  const deleteButton = document.createElement("button");
+  const editButton = document.createElement("button");
+
+  detailContainer.setAttribute("id", "page");
+  title.setAttribute("disabled", true);
+  content.setAttribute("disabled", true);
+
+  deleteButton.textContent = "삭제";
+  editButton.textContent = "수정";
+
+  buttonContainer.appendChild(editButton);
+  buttonContainer.appendChild(deleteButton);
+
+  detailContainer.appendChild(title);
+  detailContainer.appendChild(createTime);
+  detailContainer.appendChild(content);
+  detailContainer.appendChild(buttonContainer);
+
+  return {
+    detailContainer,
+    title,
+    createTime,
+    content,
+    editButton,
+    deleteButton,
+  };
+};
+
+/* 상세 내용 받아오는 함수 */
+const fetchDetailData = async (_id) => {
+  const response = await axios(`http://localhost:33088/api/todolist/${_id}`);
+  return response.data.item;
+};
+
+/* 받아온 데이터를 요소에 입력해주는 함수 */
+const setData = (pageElements, detailData) => {
+  pageElements.title.value = detailData.title;
+  pageElements.content.value = detailData.content;
+  pageElements.createTime.textContent = detailData.createdAt;
 };
 
 export default TodoInfo;
