@@ -1,5 +1,5 @@
 ul {
-  width: 520px;
+  width: 480px;
 }
 
 .todo-item {
@@ -17,7 +17,7 @@ ul {
   width: 10px;
   height: 17px;
   background: url(../img/right-icon.svg) no-repeat;
-  content: '';
+  content: "";
 }
 
 .checkbox-item {
@@ -35,7 +35,7 @@ ul {
 
 .title-item {
   overflow: hidden; /* 넘치는 컨텐츠를 가림 */
-  width: 420px;
+  width: 390px;
   white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
   text-overflow: ellipsis;
 }
@@ -45,5 +45,13 @@ ul {
   width: 10px;
   height: 17px;
   background: url(../img/left-icon.svg) no-repeat;
-  content: '';
+  content: "";
+}
+
+.list-container {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 20px;
 }
