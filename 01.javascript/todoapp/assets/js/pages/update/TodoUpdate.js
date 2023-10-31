@@ -67,6 +67,9 @@ const saveEditedTodo = async (
         // span에 접근 & span값을 최신화로 접근
         const titleSpanValue = document.getElementById(_id).lastChild;
         titleSpanValue.innerText = title.value;
+        // updatedTime 최신화
+        const updatedTime = document.querySelector(".time");
+        updatedTime.innerText = response.data.item.updatedAt;
       }
     } else {
       alert("변경된 내용이 없습니다!");
