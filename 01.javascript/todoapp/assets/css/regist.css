@@ -1,4 +1,3 @@
-/* 등록 버튼 클래스 추가 필요 */
 .regist-button {
   width: 520px;
   height: 60px;
@@ -11,4 +10,5 @@
   align-items: center;
   border: none;
   border-radius: 10px;
+  margin-bottom: 20px;
 }
