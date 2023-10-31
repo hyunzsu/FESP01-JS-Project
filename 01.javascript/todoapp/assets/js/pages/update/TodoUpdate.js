@@ -15,7 +15,14 @@ const TodoUpdate = (
       enableEditMode(editButton, deleteButton, title, content);
     } else {
       /* 데이터 저장 + 수정불가 모드로 변경 */
-      await saveEditedTodo(_id, editButton, deleteButton, title, content);
+      await saveEditedTodo(
+        _id,
+        editButton,
+        deleteButton,
+        title,
+        content,
+        detailData
+      );
     }
   });
   /* 삭제 <-> 취소 버튼 기능 */
@@ -44,21 +51,34 @@ const saveEditedTodo = async (
   editButton,
   deleteButton,
   title,
-  content
+  content,
+  detailData
 ) => {
   const updatedData = {
     title: title.value,
     content: content.value,
   };
+
+  // 수정 전의 값
+  const prevTitleValue = detailData.title;
+  const prevContentValue = detailData.content;
+
   try {
-    const response = await axios.patch(
-      `http://localhost:33088/api/todolist/${_id}`,
-      updatedData
-    );
-    cancelEditMode(editButton, deleteButton, title, content);
-    console.log("수정해서 전송한 내역 -> ", response.data);
-    if (response.status === 200) {
-      window.location.reload();
+    if (prevTitleValue !== title.value || prevContentValue !== content.value) {
+      const response = await axios.patch(
+        `http://localhost:33088/api/todolist/${_id}`,
+        updatedData
+      );
+      cancelEditMode(editButton, deleteButton, title, content);
+      console.log("수정해서 전송한 내역 -> ", response.data);
+      if (response.status === 200) {
+        // span에 접근 & span값을 최신화로 접근
+        const titleSpanValue = document.getElementById(_id).lastChild;
+        titleSpanValue.innerText = title.value;
+      }
+    } else {
+      alert("변경된 내용이 없습니다!");
+      return;
     }
   } catch (error) {
     console.error("수정내역 전송 에러", error);

@@ -26,6 +26,12 @@ const TodoList = async () => {
     checkbox.classList.add('checkbox-item');
     checkbox.type = 'checkbox';
     checkbox.checked = item.done;
+
+    // span 태그 생성 및 텍스트 내용
+    const title = document.createElement('span');
+    title.classList.add('title-item');
+    title.innerText = item.title;
+
     checkbox.addEventListener('change', async (e) => {
       // 체크박스 변경 시 서버에 업데이트 요청
       try {
@@ -43,7 +49,7 @@ const TodoList = async () => {
       if (currentFocusItem) {
         currentFocusItem.classList.remove('focus-item');
       }
-      e.target.classList.add('focus-item');
+      todoItem.classList.add('focus-item');
 
       // 아이템 클릭 시 상세 정보 표시
       if (e.target !== checkbox) {
@@ -53,10 +59,8 @@ const TodoList = async () => {
     });
 
     todoItem.appendChild(checkbox);
-    todoList.appendChild(todoItem);
-
-    const title = document.createTextNode(item.title);
     todoItem.appendChild(title);
+    todoList.appendChild(todoItem);
   };
 
   // 데이터를 가져와 화면에 표시하는 함수
