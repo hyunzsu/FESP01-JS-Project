@@ -43,7 +43,7 @@ const Header = function (title) {
     // infoContainer가 null일 경우 에러방지
     if (infoContainer) {
       infoContainer.style.display = "none";
-      focusItem.classList.remove("focus-item");
+      focusItem?.classList.remove("focus-item");
     }
 
     // registContainer가 null일 경우 에러방지
