@@ -1,20 +1,34 @@
 // 할일 등록
 
 const TodoRegist = function () {
-  const page = document.createElement("div");
-  page.setAttribute("class", "todo-regist");
-  page.style.display = "none";
+  const registContainer = document.createElement("div");
+  const btnContainer = document.createElement("div");
   const saveBtn = document.createElement("button");
-  saveBtn.innerHTML = "저장";
-  saveBtn.type = "submit";
   const cancelBtn = document.createElement("button");
-  cancelBtn.innerHTML = "취소";
   const inputTitle = document.createElement("input");
   const inputContent = document.createElement("input");
-
   const todoRegistForm = document.createElement("form");
-  todoRegistForm.appendChild(saveBtn);
-  todoRegistForm.appendChild(cancelBtn);
+
+  registContainer.setAttribute("class", "regist-container");
+  btnContainer.setAttribute("class", "button-container");
+
+  saveBtn.setAttribute("class", "regist-buttons save");
+  cancelBtn.setAttribute("class", "regist-buttons cancel");
+
+  registContainer.style.display = "none";
+  saveBtn.innerHTML = "저장";
+  saveBtn.type = "submit";
+  cancelBtn.innerHTML = "취소";
+
+  inputTitle.setAttribute("class", "regist-title");
+  inputContent.setAttribute("class", "regist-content");
+  inputTitle.setAttribute("placeholder", "TODO 제목을 입력하세요");
+  inputContent.setAttribute("placeholder", "TODO 상세 내용을 입력하세요");
+
+  btnContainer.appendChild(saveBtn);
+  btnContainer.appendChild(cancelBtn);
+
+  todoRegistForm.appendChild(btnContainer);
   todoRegistForm.appendChild(inputTitle);
   todoRegistForm.appendChild(inputContent);
 
@@ -46,14 +60,14 @@ const TodoRegist = function () {
 
   cancelBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    page.style.display = "none";
+    registContainer.style.display = "none";
     inputTitle.value = "";
     inputContent.value = "";
   });
 
-  page.appendChild(todoRegistForm);
+  registContainer.appendChild(todoRegistForm);
 
-  return page;
+  return registContainer;
 };
 
 export default TodoRegist;

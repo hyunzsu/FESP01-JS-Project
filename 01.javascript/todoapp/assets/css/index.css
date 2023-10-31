@@ -7,6 +7,7 @@
 @import url(./listItem.css);
 @import url(./regist.css);
 @import url(./todoinfo.css);
+@import url(./todoregist.css);
 
 * {
   margin: 0;
