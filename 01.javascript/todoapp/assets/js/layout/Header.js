@@ -19,6 +19,7 @@ const Header = function (title) {
     const todoList = document.querySelectorAll("input[type=checkbox]");
     const infoContainer = document.querySelector(".info-container");
     const registContainer = document.querySelector(".regist-container");
+    const focusItem = document.querySelector(".focus-item");
 
     todoList.forEach((todo) => {
       if (!todo.checked) {
@@ -31,6 +32,7 @@ const Header = function (title) {
     // infoContainer가 null일 경우 에러방지
     if (infoContainer) {
       infoContainer.style.display = "none";
+      focusItem.classList.remove("focus-item");
     }
 
     // registContainer가 null일 경우 에러방지
