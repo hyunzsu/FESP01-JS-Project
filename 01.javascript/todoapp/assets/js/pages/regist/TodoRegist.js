@@ -3,6 +3,7 @@
 const TodoRegist = function () {
   const page = document.createElement("div");
   page.setAttribute("class", "todo-regist");
+  page.style.display = "none";
   const saveBtn = document.createElement("button");
   saveBtn.innerHTML = "저장";
   saveBtn.type = "submit";
@@ -33,6 +34,7 @@ const TodoRegist = function () {
         if (response.status === 200) {
           inputTitle.value = "";
           inputContent.value = "";
+          window.location.reload();
         }
       } catch (err) {
         console.error(err);
