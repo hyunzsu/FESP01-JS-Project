@@ -6,7 +6,7 @@ const TodoRegist = function () {
   const saveBtn = document.createElement("button");
   const cancelBtn = document.createElement("button");
   const inputTitle = document.createElement("input");
-  const inputContent = document.createElement("input");
+  const textAreaContent = document.createElement("textarea");
   const todoRegistForm = document.createElement("form");
 
   registContainer.setAttribute("class", "regist-container");
@@ -21,21 +21,22 @@ const TodoRegist = function () {
   cancelBtn.innerHTML = "취소";
 
   inputTitle.setAttribute("class", "regist-title");
-  inputContent.setAttribute("class", "regist-content");
+  inputTitle.setAttribute("maxlength", "25");
+  textAreaContent.setAttribute("class", "regist-content");
   inputTitle.setAttribute("placeholder", "TODO 제목을 입력하세요");
-  inputContent.setAttribute("placeholder", "TODO 상세 내용을 입력하세요");
+  textAreaContent.setAttribute("placeholder", "TODO 상세 내용을 입력하세요");
 
   btnContainer.appendChild(saveBtn);
   btnContainer.appendChild(cancelBtn);
 
   todoRegistForm.appendChild(btnContainer);
   todoRegistForm.appendChild(inputTitle);
-  todoRegistForm.appendChild(inputContent);
+  todoRegistForm.appendChild(textAreaContent);
 
   todoRegistForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const titleValue = inputTitle.value;
-    const contentValue = inputContent.value;
+    const contentValue = textAreaContent.value;
     if (titleValue && contentValue) {
       try {
         const response = await axios.post(
@@ -47,7 +48,7 @@ const TodoRegist = function () {
         );
         if (response.status === 200) {
           inputTitle.value = "";
-          inputContent.value = "";
+          textAreaContent.value = "";
           window.location.reload();
         }
       } catch (err) {
@@ -62,7 +63,7 @@ const TodoRegist = function () {
     e.preventDefault();
     registContainer.style.display = "none";
     inputTitle.value = "";
-    inputContent.value = "";
+    textAreaContent.value = "";
   });
 
   registContainer.appendChild(todoRegistForm);
