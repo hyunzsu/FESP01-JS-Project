@@ -44,6 +44,7 @@ const TodoList = async () => {
     const title = document.createElement("span");
     title.classList.add("title-item");
     title.innerText = item.title;
+    if (item.done) title.classList.add("checked");
 
     checkbox.addEventListener('change', async (e) => {
       // 체크박스 변경 시 서버에 업데이트 요청
@@ -51,6 +52,12 @@ const TodoList = async () => {
         await axios.patch(`http://localhost:33088/api/todolist/${item._id}`, {
           done: e.target.checked,
         });
+        // 취소선 토글
+        if (e.target.checked) {
+          checkbox.nextElementSibling.classList.add("checked");
+        } else {
+          checkbox.nextElementSibling.classList.remove("checked");
+        }
       } catch (err) {
         console.error(err);
       }
