@@ -1,0 +1,27 @@
+ul {
+  width: 520px;
+}
+
+li {
+  font-size: 20px;
+  height: 60px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+}
+
+li input {
+  width: 20px;
+  height: 20px;
+  margin: 0 20px;
+  line-height: normal; /* 글자가 살짝 위로 올라가 있는 현상 수정 필요 */
+}
+
+/* active item */
+li:first-child {
+  border: none;
+  background-color: var(--color-sub);
+  font-weight: 700;
+}
