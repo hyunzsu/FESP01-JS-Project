@@ -1,5 +1,3 @@
-// /todolist/{_id}
-
 const TodoDelete = async (_id) => {
   console.log(_id);
   try {

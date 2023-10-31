@@ -1,106 +1,81 @@
 import Header from "../../layout/Header.js";
 import Footer from "../../layout/Footer.js";
-import TodoDelete from "../delete/TodoDelete.js";
+import TodoUpdate from "../update/TodoUpdate.js";
+// import TodoDelete from "../delete/TodoDelete.js";
 
 const TodoInfo = async ({ _id }) => {
   try {
-    const response = await axios(`http://localhost:33088/api/todolist/${_id}`);
-    const item = response.data.item;
-    // console.log(response);
+    /* 1. 페이지 요소 생성 및 초기 세팅 */
+    const pageElements = createPageElements();
 
-    const page = document.createElement("div");
-    page.setAttribute("id", "page");
+    /* 2. 서버에 있는 TODO 상세 데이터 가져옴 */
+    const detailData = await fetchDetailData(_id);
 
-    const title = document.createElement("input");
-    title.setAttribute("disabled", true);
-    const content = document.createElement("input");
-    content.setAttribute("disabled", true);
+    /* 3. 서버에 있는 데이터 값을 각 요소에 넣어줌 */
+    setData(pageElements, detailData);
 
-    const createTime = document.createElement("div");
-    const buttonContainer = document.createElement("div");
+    /* 4. Todo Update 수정, 저장 기능 */
+    TodoUpdate(
+      _id,
+      detailData,
+      pageElements.editButton,
+      pageElements.deleteButton,
+      pageElements.title,
+      pageElements.content
+    );
 
-    const deleteButton = document.createElement("button");
-    const editButton = document.createElement("button");
-
-    title.value = `${item.title}`;
-    content.value = `${item.content}`;
-    createTime.textContent = `${item.createdAt}`;
-    deleteButton.textContent = "삭제";
-    editButton.textContent = "수정";
-
-    /* 삭제, 취소 기능 */
-    deleteButton.addEventListener("click", () => {
-      // 버튼이 '삭제 모드'일 경우 TodoDelete 기능 동작
-      if (deleteButton.textContent === "삭제") {
-        TodoDelete(_id);
-      } else {
-        // '수정 모드'일 경우, 값을 초기화학고 input 속성 비활성화
-        title.value = `${item.title}`;
-        content.value = `${item.content}`;
-        title.setAttribute("disabled", true);
-        content.setAttribute("disabled", true);
-
-        deleteButton.textContent = "삭제";
-        editButton.textContent = "수정";
-      }
-    });
-
-    /* 수정-삭제 기능 이벤트 함수 */
-    editButton.addEventListener("click", async (e) => {
-      // 수정버튼을 누르면 [제목],[내용] input에 disabled 속성 삭제
-      if (editButton.textContent == "수정") {
-        /* 1. input의 disabled 속성 삭제 */
-        console.log("수정 버튼 클릭 이벤트 발생");
-        title.removeAttribute("disabled");
-        content.removeAttribute("disabled");
-
-        /* 2. [수정] -> [완료]로 변경, [삭제] -> [취소]로 글자 수정 */
-        editButton.textContent = "완료";
-        deleteButton.textContent = "취소";
-      } else {
-        /* 1. 완료 버튼을 누르면 [제목],[내용] input에 disabled 속성 추가 */
-        title.setAttribute("disabled", true);
-        content.setAttribute("disabled", true);
-
-        /* 1. [완료] -> [수정]로 변경, [취소] -> [삭제]로 글자 수정 */
-        editButton.textContent = "수정";
-        deleteButton.textContent = "삭제";
-
-        /* editData에 title, content 값 전달 */
-        let editData = {
-          title: `${title.value}`,
-          content: `${content.value}`,
-        };
-        console.log(editData);
-        editTodo(_id, editData);
-      }
-    });
-
-    /* 수정한 내용 axios.patch를 통해 전송하는 함수 */
-    const editTodo = async (_id, updateData) => {
-      try {
-        const response = await axios.patch(
-          `http://localhost:33088/api/todolist/${_id}`,
-          updateData
-        );
-        console.log("수정해서 전송한 내역 -> ", response.data);
-      } catch (error) {
-        console.error("수정 에러", error);
-      }
-    };
-
-    let editCheck = buttonContainer.appendChild(editButton);
-    buttonContainer.appendChild(deleteButton);
-
-    page.appendChild(buttonContainer);
-    page.appendChild(title);
-    page.appendChild(createTime);
-    page.appendChild(content);
-
-    return page;
+    return pageElements.detailContainer;
   } catch (err) {
     console.log(err.message);
   }
+};
+
+/* 페이지 요소 생성 및 초기 세팅 */
+const createPageElements = () => {
+  const detailContainer = document.createElement("div");
+  const title = document.createElement("input");
+  const createTime = document.createElement("div");
+  const content = document.createElement("input");
+  const buttonContainer = document.createElement("div");
+  const deleteButton = document.createElement("button");
+  const editButton = document.createElement("button");
+
+  detailContainer.setAttribute("id", "page");
+  title.setAttribute("disabled", true);
+  content.setAttribute("disabled", true);
+
+  deleteButton.textContent = "삭제";
+  editButton.textContent = "수정";
+
+  buttonContainer.appendChild(editButton);
+  buttonContainer.appendChild(deleteButton);
+
+  detailContainer.appendChild(title);
+  detailContainer.appendChild(createTime);
+  detailContainer.appendChild(content);
+  detailContainer.appendChild(buttonContainer);
+
+  return {
+    detailContainer,
+    title,
+    createTime,
+    content,
+    editButton,
+    deleteButton,
+  };
+};
+
+/* 상세 내용 받아오는 함수 */
+const fetchDetailData = async (_id) => {
+  const response = await axios(`http://localhost:33088/api/todolist/${_id}`);
+  return response.data.item;
+};
+
+/* 받아온 데이터를 요소에 입력해주는 함수 */
+const setData = (pageElements, detailData) => {
+  pageElements.title.value = detailData.title;
+  pageElements.content.value = detailData.content;
+  pageElements.createTime.textContent = detailData.createdAt;
 };
 
 export default TodoInfo;
