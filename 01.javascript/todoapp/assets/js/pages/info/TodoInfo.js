@@ -74,7 +74,7 @@ const createPageElements = () => {
 const setData = (pageElements, detailData) => {
   pageElements.title.value = detailData.title;
   pageElements.content.value = detailData.content;
-  pageElements.createTime.textContent = detailData.createdAt;
+  pageElements.createTime.textContent = detailData.updatedAt;
 };
 
 export default TodoInfo;
