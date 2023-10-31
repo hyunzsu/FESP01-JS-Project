@@ -18,10 +18,17 @@ const TodoList = async () => {
   // 각 Todo 아이템을 생성하는 함수
   const createTodoItem = (item) => {
     const todoItem = document.createElement("li");
-    // 체크박스 생성
+    todoItem.id = item._id; //id속성값 추가
+
+    // 체크박스 생성`
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = item.done;
+
+    // span 태그 생성 및 텍스트 내용
+    const title = document.createElement("span");
+    title.innerText = item.title;
+
     checkbox.addEventListener("change", async (e) => {
       // 체크박스 변경 시 서버에 업데이트 요청
       try {
@@ -42,10 +49,8 @@ const TodoList = async () => {
     });
 
     todoItem.appendChild(checkbox);
-    todoList.appendChild(todoItem);
-
-    const title = document.createTextNode(item.title);
     todoItem.appendChild(title);
+    todoList.appendChild(todoItem);
   };
 
   // 데이터를 가져와 화면에 표시하는 함수
