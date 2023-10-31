@@ -1,7 +1,8 @@
 .info-container {
-  width: 400px;
-  height: 518px;
-  padding: 20px;
+  width: 480px;
+  height: 500px;
+  padding: 30px;
+  margin-left: 20px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -55,7 +56,7 @@
 
 .title-input,
 .content-input {
-  width: 360px;
+  width: 420px;
   height: 30px;
   padding-left: 5px;
   border-radius: 5px;

@@ -1,5 +1,5 @@
 .todolist {
-  width: 520px;
+  width: 480px;
   max-height: 300px;
   overflow-y: auto;
 }
@@ -20,7 +20,7 @@
   width: 10px;
   height: 17px;
   background: url(../img/right-icon.svg) no-repeat;
-  content: '';
+  content: "";
 }
 
 .checkbox-item {
@@ -38,9 +38,10 @@
 }
 
 .title-item {
-  overflow: hidden;
-  width: 420px;
-  white-space: nowrap;
+  overflow: hidden; /* 넘치는 컨텐츠를 가림 */
+  width: 390px;
+  white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
+
   text-overflow: ellipsis;
 }
 
@@ -49,7 +50,15 @@
   width: 10px;
   height: 17px;
   background: url(../img/left-icon.svg) no-repeat;
-  content: '';
+  content: "";
+}
+
+.list-container {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 20px;
 }
 
 ::-webkit-scrollbar {
