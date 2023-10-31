@@ -1,0 +1,14 @@
+/* 등록 버튼 클래스 추가 필요 */
+.regist-button {
+  width: 520px;
+  height: 60px;
+  color: var(--color-white);
+  font-size: 20px;
+  font-weight: 600;
+  background-color: var(--color-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+}
