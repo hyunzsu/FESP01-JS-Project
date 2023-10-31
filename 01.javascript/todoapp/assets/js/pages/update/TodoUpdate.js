@@ -1,32 +1,19 @@
 import TodoDelete from "../delete/TodoDelete.js";
+import fetchDetailData from "../fetch/fetchDetailData.js";
 
 /* [수정 모드] & [저장 모드] 변경 함수 */
-const TodoUpdate = (
-  _id,
-  detailData,
-  editButton,
-  deleteButton,
-  title,
-  content
-) => {
+const TodoUpdate = (_id, editButton, deleteButton, title, content) => {
   editButton.addEventListener("click", async () => {
     if (editButton.textContent === "수정") {
       /* 수정 가능 모드로 변경 */
       enableEditMode(editButton, deleteButton, title, content);
     } else {
       /* 데이터 저장 + 수정불가 모드로 변경 */
-      await saveEditedTodo(
-        _id,
-        editButton,
-        deleteButton,
-        title,
-        content,
-        detailData
-      );
+      await saveEditedTodo(_id, editButton, deleteButton, title, content);
     }
   });
   /* 삭제 <-> 취소 버튼 기능 */
-  deleteTodo(_id, deleteButton, detailData, editButton, title, content);
+  deleteTodo(_id, deleteButton, editButton, title, content);
 };
 
 /* 수정 가능 모드 세팅*/
@@ -51,19 +38,24 @@ const saveEditedTodo = async (
   editButton,
   deleteButton,
   title,
-  content,
-  detailData
+  content
 ) => {
   const updatedData = {
     title: title.value,
     content: content.value,
   };
 
-  // 수정 전의 값
-  const prevTitleValue = detailData.title;
-  const prevContentValue = detailData.content;
+  // 수정 전의 값을 불러오는 코드
+  const detailData = await fetchDetailData(_id);
+  let prevTitleValue = detailData.title;
+  let prevContentValue = detailData.content;
 
   try {
+    if (title.value === "" || content.value === "") {
+      alert("제목과 내용을 모두 작성해주세요!");
+      return;
+    }
+
     if (prevTitleValue !== title.value || prevContentValue !== content.value) {
       const response = await axios.patch(
         `http://localhost:33088/api/todolist/${_id}`,
@@ -86,18 +78,12 @@ const saveEditedTodo = async (
 };
 
 /* 삭제 <-> 취소 버튼 기능 */
-const deleteTodo = (
-  _id,
-  deleteButton,
-  detailData,
-  editButton,
-  title,
-  content
-) => {
-  deleteButton.addEventListener("click", () => {
+const deleteTodo = (_id, deleteButton, editButton, title, content) => {
+  deleteButton.addEventListener("click", async () => {
     if (deleteButton.textContent === "삭제") {
       TodoDelete(_id);
     } else {
+      const detailData = await fetchDetailData(_id);
       title.value = detailData.title;
       content.value = detailData.content;
       cancelEditMode(editButton, deleteButton, title, content);
