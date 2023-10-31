@@ -8,8 +8,8 @@ const TodoList = async () => {
   const registTitle = document.createTextNode('등록');
   const infoArea = document.createElement('section');
   registBtn.appendChild(registTitle);
-  page.classList.add('contents-container')
-  registBtn.classList.add('regist-button')
+  page.classList.add('contents-container');
+  registBtn.classList.add('regist-button');
 
   // 등록버튼 클릭 이벤트 처리
   registBtn.addEventListener('click', () => {
@@ -20,10 +20,10 @@ const TodoList = async () => {
   // 각 Todo 아이템을 생성하는 함수
   const createTodoItem = (item) => {
     const todoItem = document.createElement('li');
-    todoItem.classList.add('todo-item')
+    todoItem.classList.add('todo-item');
     // 체크박스 생성
     const checkbox = document.createElement('input');
-    checkbox.classList.add('checkbox-item')
+    checkbox.classList.add('checkbox-item');
     checkbox.type = 'checkbox';
     checkbox.checked = item.done;
     checkbox.addEventListener('change', async (e) => {
@@ -38,6 +38,13 @@ const TodoList = async () => {
     });
 
     todoItem.addEventListener('click', async (e) => {
+      // 이미 focus-item 클래스를 가지고 있는 ul 요소를 찾아서 클래스 제거
+      const currentFocusItem = document.querySelector('.focus-item');
+      if (currentFocusItem) {
+        currentFocusItem.classList.remove('focus-item');
+      }
+      e.target.classList.add('focus-item');
+
       // 아이템 클릭 시 상세 정보 표시
       if (e.target !== checkbox) {
         infoArea.innerHTML = '';

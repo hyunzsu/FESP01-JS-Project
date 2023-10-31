@@ -19,8 +19,7 @@ ul {
   line-height: normal; /* 글자가 살짝 위로 올라가 있는 현상 수정 필요 */
 }
 
-/* click 이벤트와 겹침 */
-.todo-item:hover {
+.focus-item {
   border: none;
   background-color: var(--color-sub);
   font-weight: 700;
