@@ -6,6 +6,7 @@
 @import url(./header.css);
 @import url(./listItem.css);
 @import url(./regist.css);
+@import url(./todoinfo.css);
 
 * {
   margin: 0;
