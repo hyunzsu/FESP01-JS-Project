@@ -15,6 +15,10 @@
   cursor: pointer;
 }
 
+.todo-item .checked {
+  text-decoration: line-through;
+}
+
 .todo-item::after {
   display: inline-block;
   width: 10px;

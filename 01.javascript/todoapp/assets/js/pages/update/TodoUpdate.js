@@ -20,6 +20,7 @@ const TodoUpdate = (_id, editButton, deleteButton, title, content) => {
 const enableEditMode = (editButton, deleteButton, title, content) => {
   title.removeAttribute("disabled");
   content.removeAttribute("disabled");
+  title.focus();
   editButton.textContent = "완료";
   deleteButton.textContent = "취소";
 };
@@ -67,6 +68,9 @@ const saveEditedTodo = async (
         // span에 접근 & span값을 최신화로 접근
         const titleSpanValue = document.getElementById(_id).lastChild;
         titleSpanValue.innerText = title.value;
+        // updatedTime 최신화
+        const updatedTime = document.querySelector(".time");
+        updatedTime.innerText = response.data.item.updatedAt;
       }
     } else {
       alert("변경된 내용이 없습니다!");

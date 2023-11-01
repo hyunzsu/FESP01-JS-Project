@@ -24,8 +24,12 @@ const TodoList = async () => {
     /* todo 상세보기가 열려있으면 삭제 후 등록 페이지 노출 */
     const todoInfo = document.querySelector('.info-container');
     if (todoInfo) {
+      const todoItems = document.querySelectorAll(".todo-item");
+      todoItems.forEach((item) => item.classList.remove("focus-item"));
       todoInfo.remove();
     }
+    const inputTitle = document.querySelector(".regist-title");
+    inputTitle.focus();
   });
 
   // 각 Todo 아이템을 생성하는 함수
@@ -44,6 +48,7 @@ const TodoList = async () => {
     const title = document.createElement("span");
     title.classList.add("title-item");
     title.innerText = item.title;
+    if (item.done) title.classList.add("checked");
 
     checkbox.addEventListener('change', async (e) => {
       // 체크박스 변경 시 서버에 업데이트 요청
@@ -51,6 +56,12 @@ const TodoList = async () => {
         await axios.patch(`http://localhost:33088/api/todolist/${item._id}`, {
           done: e.target.checked,
         });
+        // 취소선 토글
+        if (e.target.checked) {
+          checkbox.nextElementSibling.classList.add("checked");
+        } else {
+          checkbox.nextElementSibling.classList.remove("checked");
+        }
       } catch (err) {
         console.error(err);
       }
