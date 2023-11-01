@@ -11,6 +11,7 @@
 
 .regist-title {
   font-size: 24px;
+  height: 30px;
   font-weight: 700;
   margin-bottom: 30px;
   order: 1;
@@ -19,12 +20,13 @@
   font-size: 20px;
   font-weight: 400;
   order: 2;
+  padding-top: 10px;
+  height: 300px;
 }
 
 .regist-title,
 .regist-content {
   width: 420px;
-  height: 30px;
   padding-left: 5px;
   border-radius: 5px;
 }

@@ -33,15 +33,16 @@ const createPageElements = () => {
 
   const title = document.createElement("input");
   const createTime = document.createElement("div");
-  const content = document.createElement("input");
+  const content = document.createElement("textarea");
   const buttonContainer = document.createElement("div");
   const deleteButton = document.createElement("button");
   const editButton = document.createElement("button");
 
   title.setAttribute("class", "title-input");
   title.setAttribute("disabled", true);
+  title.setAttribute("maxlength", "25");
   createTime.setAttribute("class", "time");
-  content.setAttribute("class", "content-input");
+  content.setAttribute("class", "content-textarea");
   content.setAttribute("disabled", true);
 
   detailContainer.setAttribute("class", "info-container");
