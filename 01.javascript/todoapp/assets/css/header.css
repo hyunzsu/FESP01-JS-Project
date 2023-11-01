@@ -30,5 +30,4 @@ header button {
 
 header button.active {
   color: var(--color-main);
-  text-decoration: underline;
 }
