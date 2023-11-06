@@ -1,5 +1,6 @@
-// 할일 등록
+import axios from "axios";
 
+// 할일 등록
 const TodoRegist = function () {
   const registContainer = document.createElement("div");
   const btnContainer = document.createElement("div");
