@@ -1,5 +1,5 @@
-import TodoRegist from "../regist/TodoRegist.js";
-import TodoInfo from "../info/TodoInfo.js";
+import TodoRegist from "../regist/TodoRegist";
+import TodoInfo from "../info/TodoInfo";
 
 const TodoList = async () => {
   const page = document.createElement("div");

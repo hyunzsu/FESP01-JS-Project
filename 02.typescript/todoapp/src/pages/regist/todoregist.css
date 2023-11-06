@@ -1,0 +1,59 @@
+.regist-container {
+  width: 480px;
+  height: 500px;
+  padding: 30px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: var(--color-sub);
+}
+
+.regist-title {
+  font-size: 24px;
+  height: 30px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  order: 1;
+}
+.regist-content {
+  font-size: 20px;
+  font-weight: 400;
+  order: 2;
+  padding-top: 10px;
+  height: 300px;
+}
+
+.regist-title,
+.regist-content {
+  width: 420px;
+  padding-left: 5px;
+  border-radius: 5px;
+}
+
+.regist-title:focus,
+.regist-content:focus {
+  box-shadow: 0 0 0 2px var(--color-main);
+}
+
+.regist-buttons {
+  width: 50px;
+  height: 30px;
+  background-color: var(--color-white);
+  font-size: 18px;
+  font-weight: 600;
+
+  border-radius: 5px;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.save {
+  color: var(--color-main);
+  border: 1px solid var(--color-main);
+}
+
+.cancel {
+  color: var(--color-cancel);
+  border: 1px solid var(--color-cancel);
+}

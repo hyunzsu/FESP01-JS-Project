@@ -1,6 +1,6 @@
-import Footer from "./layout/Footer.js";
-import Header from "./layout/Header.js";
-import TodoList from "./pages/list/TodoList.js";
+import Footer from "./layout/Footer";
+import Header from "./layout/Header/Header";
+import TodoList from "./pages/list/TodoList";
 
 const App = async function () {
   const content = document.createElement("div");
