@@ -18,8 +18,11 @@ const TodoList = async () => {
 
   // 등록버튼 클릭 이벤트 처리
   registBtn.addEventListener("click", () => {
-    const todoRegist = document.querySelector(".regist-container");
-    if (todoRegist.style.display === "none") todoRegist.style.display = "block";
+    const todoRegist = document.querySelector(
+      ".regist-container"
+    ) as HTMLDivElement;
+    if (todoRegist!.style.display === "none")
+      todoRegist!.style.display = "block";
 
     /* todo 상세보기가 열려있으면 삭제 후 등록 페이지 노출 */
     const todoInfo = document.querySelector(".info-container");
@@ -28,18 +31,20 @@ const TodoList = async () => {
       todoItems.forEach((item) => item.classList.remove("focus-item"));
       todoInfo.remove();
     }
-    const inputTitle = document.querySelector(".regist-title");
-    inputTitle.focus();
+    const inputTitle = document.querySelector(
+      ".regist-title"
+    ) as HTMLInputElement;
+    inputTitle!.focus();
   });
 
   // 각 Todo 아이템을 생성하는 함수
-  const createTodoItem = (item) => {
+  const createTodoItem = (item: TodoItem) => {
     const todoItem = document.createElement("li");
-    todoItem.id = item._id; //id속성값 추가
+    todoItem.id = item._id.toString(); //id속성값 추가
     todoItem.classList.add("todo-item");
 
     // 체크박스 생성
-    const checkbox = document.createElement("input");
+    const checkbox = document.createElement("input") as HTMLInputElement;
     checkbox.classList.add("checkbox-item");
     checkbox.type = "checkbox";
     checkbox.checked = item.done;
@@ -52,16 +57,18 @@ const TodoList = async () => {
 
     //체크박스 업데이트 기능
     checkbox.addEventListener("change", async (e) => {
+      const target = e.target as HTMLInputElement;
+
       // 체크박스 변경 시 서버에 업데이트 요청
       try {
         await axios.patch(`http://localhost:33088/api/todolist/${item._id}`, {
-          done: e.target.checked,
+          done: target!.checked,
         });
         // 취소선 토글
-        if (e.target.checked) {
-          checkbox.nextElementSibling.classList.add("checked");
+        if (target!.checked) {
+          checkbox.nextElementSibling!.classList.add("checked");
         } else {
-          checkbox.nextElementSibling.classList.remove("checked");
+          checkbox.nextElementSibling!.classList.remove("checked");
         }
       } catch (err) {
         console.error(err);
@@ -70,9 +77,11 @@ const TodoList = async () => {
 
     todoItem.addEventListener("click", async (e) => {
       /* 등록이 열려 있으면 none으로 처리 후 상세 페이지 열기 */
-      const todoRegist = document.querySelector(".regist-container");
-      if (todoRegist.style.display === "block") {
-        todoRegist.style.display = "none";
+      const todoRegist = document.querySelector(
+        ".regist-container"
+      ) as HTMLDivElement;
+      if (todoRegist!.style.display === "block") {
+        todoRegist!.style.display = "none";
       }
 
       // 이미 focus-item 클래스를 가지고 있는 ul 요소를 찾아서 클래스 제거
@@ -86,7 +95,11 @@ const TodoList = async () => {
       // 아이템 클릭 시 상세 정보 표시
       if (e.target !== checkbox) {
         infoArea.innerHTML = "";
-        infoArea.appendChild(await TodoInfo({ _id: item._id }));
+
+        const todoInfoContent = (await TodoInfo({
+          _id: item._id.toString(),
+        })) as HTMLDivElement;
+        infoArea.appendChild(todoInfoContent);
       }
     });
 
