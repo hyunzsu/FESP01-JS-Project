@@ -25,3 +25,12 @@ interface TodoResponse {
   ok: number;
   item: TodoItem;
 }
+
+interface PageElements {
+  detailContainer: HTMLDivElement;
+  title: HTMLInputElement;
+  createTime: HTMLDivElement;
+  content: HTMLTextAreaElement;
+  editButton: HTMLButtonElement;
+  deleteButton: HTMLButtonElement;
+}

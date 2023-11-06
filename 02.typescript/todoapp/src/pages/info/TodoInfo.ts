@@ -1,20 +1,21 @@
 import TodoUpdate from "../update/TodoUpdate";
 import fetchDetailData from "../fetch/fetchDetailData";
+import getErrorMessage from "../../utils/Error";
 
-const TodoInfo = async ({ _id }) => {
+const TodoInfo = async ({_id} : {_id: string}) => {
   try {
     /* 1. 페이지 요소 생성 및 초기 세팅 */
     const pageElements = createPageElements();
 
     /* 2. 서버에 있는 TODO 상세 데이터 가져옴 */
-    const detailData = await fetchDetailData(_id);
+    const detailData = await fetchDetailData(Number(_id));
 
     /* 3. 서버에 있는 데이터 값을 각 요소에 넣어줌 */
     setData(pageElements, detailData);
 
     /* 4. Todo Update 수정, 저장 기능 */
     TodoUpdate(
-      _id,
+      Number(_id),
       pageElements.editButton,
       pageElements.deleteButton,
       pageElements.title,
@@ -23,7 +24,7 @@ const TodoInfo = async ({ _id }) => {
 
     return pageElements.detailContainer;
   } catch (err) {
-    console.log(err.message);
+    console.log(getErrorMessage(err));
   }
 };
 
@@ -39,11 +40,11 @@ const createPageElements = () => {
   const editButton = document.createElement("button");
 
   title.setAttribute("class", "title-input");
-  title.setAttribute("disabled", true);
+  title.setAttribute("disabled", "true");
   title.setAttribute("maxlength", "25");
   createTime.setAttribute("class", "time");
   content.setAttribute("class", "content-textarea");
-  content.setAttribute("disabled", true);
+  content.setAttribute("disabled", "true");
 
   detailContainer.setAttribute("class", "info-container");
   buttonContainer.setAttribute("class", "button-container");
@@ -72,7 +73,7 @@ const createPageElements = () => {
 };
 
 /* 받아온 데이터를 요소에 입력해주는 함수 */
-const setData = (pageElements, detailData) => {
+const setData = (pageElements: PageElements, detailData: TodoItem) => {
   pageElements.title.value = detailData.title;
   pageElements.content.value = detailData.content;
   pageElements.createTime.textContent = detailData.updatedAt;

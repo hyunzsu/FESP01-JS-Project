@@ -1,5 +1,8 @@
+import axios from "axios";
+import getErrorMessage from "../../utils/Error";
+
 /* TodoDelete는 Todo를 제거하기 위한 함수, 매개변수로 통신에 필요한 _id값을 전달받아 사용한다 */
-const TodoDelete = async (_id) => {
+const TodoDelete = async (_id: number) => {
   try {
     // Axios로 Delete 요청을 보냄
     const response = await axios.delete(
@@ -10,7 +13,7 @@ const TodoDelete = async (_id) => {
       window.location.reload();
     }
   } catch (err) {
-    console.log(err.message);
+    console.log(getErrorMessage(err));
   }
 };
 
