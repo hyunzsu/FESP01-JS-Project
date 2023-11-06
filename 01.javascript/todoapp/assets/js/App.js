@@ -5,7 +5,7 @@ import TodoList from "./pages/list/TodoList.js";
 const App = async function () {
   const content = document.createElement("div");
   content.setAttribute("id", "app");
-  content.appendChild(Header("TODO"));
+  content.appendChild(Header());
   content.appendChild(await TodoList());
   content.appendChild(Footer());
   return content;

@@ -1,7 +1,8 @@
-const Header = function (title) {
+const Header = function () {
+  /* Header 컴포넌트 UI 생성 */
   const headerNode = document.createElement("header");
   const h1 = document.createElement("h1");
-  const headerTitle = document.createTextNode(title);
+  const headerTitle = document.createTextNode("TODO");
   h1.appendChild(headerTitle);
 
   const filterBtns = document.createElement("div");
@@ -16,13 +17,14 @@ const Header = function (title) {
   filterBtns.appendChild(activeBtn);
   filterBtns.appendChild(completedBtn);
 
+  /* Filter 기능 */
   function filter(active, completed, target) {
     const todoList = document.querySelectorAll("input[type=checkbox]");
     const infoContainer = document.querySelector(".info-container");
     const registContainer = document.querySelector(".regist-container");
     const focusItem = document.querySelector(".focus-item");
 
-    // 필터 버튼 색상 및 언더바 추가
+    // 필터 버튼 색상 추가
     const buttons = filterBtns.querySelectorAll("button");
     buttons.forEach((item) => {
       if (target === item) {
@@ -32,6 +34,7 @@ const Header = function (title) {
       }
     });
 
+    // 필터링 기능
     todoList.forEach((todo) => {
       if (!todo.checked) {
         todo.parentNode.style.display = active ? "flex" : "none";

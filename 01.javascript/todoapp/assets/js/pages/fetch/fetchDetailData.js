@@ -1,3 +1,4 @@
+/* fetchDetailData는 상세정보를 불러오는 함수 */
 const fetchDetailData = async (_id) => {
   try {
     const response = await axios(`http://localhost:33088/api/todolist/${_id}`);
