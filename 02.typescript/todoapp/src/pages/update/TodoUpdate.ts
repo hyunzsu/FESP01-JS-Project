@@ -1,8 +1,9 @@
+import axios from "axios";
 import TodoDelete from "../delete/TodoDelete";
 import fetchDetailData from "../fetch/fetchDetailData";
 
 /* [수정 모드] & [저장 모드] 변경 함수 */
-const TodoUpdate = (_id, editButton, deleteButton, title, content) => {
+const TodoUpdate = (_id: number, editButton: HTMLButtonElement, deleteButton: HTMLButtonElement, title: HTMLInputElement, content: HTMLTextAreaElement) => {
   editButton.addEventListener("click", async () => {
     if (editButton.textContent === "수정") {
       /* 수정 가능 모드로 변경 */
@@ -17,7 +18,7 @@ const TodoUpdate = (_id, editButton, deleteButton, title, content) => {
 };
 
 /* 수정 가능 모드 세팅*/
-const enableEditMode = (editButton, deleteButton, title, content) => {
+const enableEditMode = (editButton: HTMLButtonElement, deleteButton: HTMLButtonElement, title: HTMLInputElement, content: HTMLTextAreaElement) => {
   title.removeAttribute("disabled");
   content.removeAttribute("disabled");
   title.focus();
@@ -26,21 +27,15 @@ const enableEditMode = (editButton, deleteButton, title, content) => {
 };
 
 /* 수정 불가(취소) 모드 세팅  */
-const cancelEditMode = (editButton, deleteButton, title, content) => {
-  title.setAttribute("disabled", true);
-  content.setAttribute("disabled", true);
+const cancelEditMode = (editButton: HTMLButtonElement, deleteButton: HTMLButtonElement, title: HTMLInputElement, content: HTMLTextAreaElement) => {
+  title.setAttribute("disabled", "true");
+  content.setAttribute("disabled", "true");
   editButton.textContent = "수정";
   deleteButton.textContent = "삭제";
 };
 
 /* 수정 내역 전송 */
-const saveEditedTodo = async (
-  _id,
-  editButton,
-  deleteButton,
-  title,
-  content
-) => {
+const saveEditedTodo = async (_id: number, editButton: HTMLButtonElement, deleteButton: HTMLButtonElement, title: HTMLInputElement, content: HTMLTextAreaElement) => {
   const updatedData = {
     title: title.value,
     content: content.value,
@@ -58,19 +53,16 @@ const saveEditedTodo = async (
     }
 
     if (prevTitleValue !== title.value || prevContentValue !== content.value) {
-      const response = await axios.patch(
-        `http://localhost:33088/api/todolist/${_id}`,
-        updatedData
-      );
+      const response = await axios.patch(`http://localhost:33088/api/todolist/${_id}`, updatedData);
       cancelEditMode(editButton, deleteButton, title, content);
       console.log("수정해서 전송한 내역 -> ", response.data);
       if (response.status === 200) {
         // span에 접근 & span값을 최신화로 접근
-        const titleSpanValue = document.getElementById(_id).lastChild;
-        titleSpanValue.innerText = title.value;
+        const titleSpanValue = document.getElementById(String(_id))!.lastChild;
+        titleSpanValue!.textContent = title.value;
         // updatedTime 최신화
         const updatedTime = document.querySelector(".time");
-        updatedTime.innerText = response.data.item.updatedAt;
+        updatedTime!.textContent = response.data.item.updatedAt;
       }
     } else {
       alert("변경된 내용이 없습니다!");
@@ -82,7 +74,7 @@ const saveEditedTodo = async (
 };
 
 /* 삭제 <-> 취소 버튼 기능 */
-const deleteTodo = (_id, deleteButton, editButton, title, content) => {
+const deleteTodo = (_id: number, deleteButton: HTMLButtonElement, editButton: HTMLButtonElement, title: HTMLInputElement, content: HTMLTextAreaElement) => {
   deleteButton.addEventListener("click", async () => {
     if (deleteButton.textContent === "삭제") {
       TodoDelete(_id);
