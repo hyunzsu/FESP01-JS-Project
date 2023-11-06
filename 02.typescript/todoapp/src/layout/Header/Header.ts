@@ -18,10 +18,14 @@ const Header = function () {
   filterBtns.appendChild(completedBtn);
 
   /* Filter 기능 */
-  function filter(active, completed, target) {
+  function filter(active: boolean, completed: boolean, target: EventTarget) {
     const todoList = document.querySelectorAll("input[type=checkbox]");
-    const infoContainer = document.querySelector(".info-container");
-    const registContainer = document.querySelector(".regist-container");
+    const infoContainer = document.querySelector(
+      ".info-container"
+    ) as HTMLDivElement;
+    const registContainer = document.querySelector(
+      ".regist-container"
+    ) as HTMLDivElement;
     const focusItem = document.querySelector(".focus-item");
 
     // 필터 버튼 색상 추가
@@ -36,16 +40,18 @@ const Header = function () {
 
     // 필터링 기능
     todoList.forEach((todo) => {
-      if (!todo.checked) {
-        todo.parentNode.style.display = active ? "flex" : "none";
+      const todoParent = todo.parentNode as HTMLLIElement;
+      const todoChild = todo as HTMLInputElement;
+      if (!todoChild.checked) {
+        todoParent.style.display = active ? "flex" : "none";
       } else {
-        todo.parentNode.style.display = completed ? "flex" : "none";
+        todoParent.style.display = completed ? "flex" : "none";
       }
     });
 
     // infoContainer가 null일 경우 에러방지
     if (infoContainer) {
-      infoContainer.style.display = "none";
+      infoContainer!.style.display = "none";
       focusItem?.classList.remove("focus-item");
     }
 
@@ -54,11 +60,17 @@ const Header = function () {
       registContainer.style.display = "none";
     }
   }
+
   allBtn.addEventListener("click", (e) => {
-    filter(true, true, e.target);
+    filter(true, true, e.target as HTMLButtonElement);
   });
-  activeBtn.addEventListener("click", (e) => filter(true, false, e.target));
-  completedBtn.addEventListener("click", (e) => filter(false, true, e.target));
+
+  activeBtn.addEventListener("click", (e) =>
+    filter(true, false, e.target as HTMLButtonElement)
+  );
+  completedBtn.addEventListener("click", (e) =>
+    filter(false, true, e.target as HTMLButtonElement)
+  );
 
   headerNode.appendChild(h1);
   headerNode.appendChild(filterBtns);
