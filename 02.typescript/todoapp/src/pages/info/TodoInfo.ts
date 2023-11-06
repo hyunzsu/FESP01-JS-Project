@@ -1,7 +1,8 @@
 import TodoUpdate from "../update/TodoUpdate";
 import fetchDetailData from "../fetch/fetchDetailData";
+import getErrorMessage from "../../utils/Error";
 
-const TodoInfo = async ({ _id }) => {
+const TodoInfo = async (_id: number) => {
   try {
     /* 1. 페이지 요소 생성 및 초기 세팅 */
     const pageElements = createPageElements();
@@ -23,7 +24,7 @@ const TodoInfo = async ({ _id }) => {
 
     return pageElements.detailContainer;
   } catch (err) {
-    console.log(err.message);
+    console.log(getErrorMessage(err));
   }
 };
 
@@ -39,11 +40,13 @@ const createPageElements = () => {
   const editButton = document.createElement("button");
 
   title.setAttribute("class", "title-input");
-  title.setAttribute("disabled", true);
+  // 확인해보기(-)
+  title.setAttribute("disabled", "true");
   title.setAttribute("maxlength", "25");
   createTime.setAttribute("class", "time");
   content.setAttribute("class", "content-textarea");
-  content.setAttribute("disabled", true);
+  // 확인해보기(-)
+  content.setAttribute("disabled", "true");
 
   detailContainer.setAttribute("class", "info-container");
   buttonContainer.setAttribute("class", "button-container");
@@ -71,8 +74,17 @@ const createPageElements = () => {
   };
 };
 
+interface PageElements {
+  detailContainer: HTMLDivElement;
+  title: HTMLInputElement;
+  createTime: HTMLDivElement;
+  content: HTMLTextAreaElement;
+  editButton: HTMLButtonElement;
+  deleteButton: HTMLButtonElement;
+}
+
 /* 받아온 데이터를 요소에 입력해주는 함수 */
-const setData = (pageElements, detailData) => {
+const setData = (pageElements: PageElements, detailData: TodoItem) => {
   pageElements.title.value = detailData.title;
   pageElements.content.value = detailData.content;
   pageElements.createTime.textContent = detailData.updatedAt;
