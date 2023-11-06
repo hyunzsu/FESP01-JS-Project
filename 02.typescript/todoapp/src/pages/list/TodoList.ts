@@ -1,5 +1,6 @@
-import TodoRegist from "../regist/TodoRegist";
+import axios from "axios";
 import TodoInfo from "../info/TodoInfo";
+import TodoRegist from "../regist/TodoRegist";
 
 const TodoList = async () => {
   const page = document.createElement("div");
@@ -97,7 +98,10 @@ const TodoList = async () => {
   // 데이터를 가져와 화면에 표시하는 함수
   const initializeTodoList = async () => {
     try {
-      const response = await axios("http://localhost:33088/api/todolist");
+      // Axios에 응답받는 item 타입을 제네릭으로 넘겨준다
+      const response = await axios<TodoListResponse>(
+        "http://localhost:33088/api/todolist"
+      );
       const { items } = response.data;
       items.forEach((item) => createTodoItem(item));
     } catch (err) {
