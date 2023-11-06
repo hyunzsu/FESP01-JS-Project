@@ -1,0 +1,15 @@
+.regist-button {
+  width: 480px;
+  height: 60px;
+  color: var(--color-white);
+  font-size: 20px;
+  font-weight: 600;
+  background-color: var(--color-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
