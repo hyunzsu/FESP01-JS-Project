@@ -1,7 +1,14 @@
-import "./App.css";
+import { Header, Footer } from "@/layout/_index";
+import { TodoList } from "@/pages/_index";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div id="app">
+      <Header />
+      <TodoList />
+      <Footer />
+    </div>
+  );
 }
 
 export default App;

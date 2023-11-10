@@ -1,5 +1,5 @@
 import axios from "axios";
-import getErrorMessage from "../../utils/Error";
+import getErrorMessage from "./Error";
 
 /* TodoDelete는 Todo를 제거하기 위한 함수, 매개변수로 통신에 필요한 _id값을 전달받아 사용한다 */
 const TodoDelete = async (_id: number) => {
