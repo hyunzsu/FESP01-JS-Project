@@ -1,5 +1,11 @@
 const Footer = () => {
-  return <div>푸터</div>;
+  return (
+    <footer>
+      <p>Developed By 김진우 김영채 김도현 현지수</p>
+      <p>Developed By 김진우 김영채 김도현 현지수</p>
+      <p>Developed By 김진우 장효윤 정명진 장현주</p>
+    </footer>
+  );
 };
 
 export default Footer;
