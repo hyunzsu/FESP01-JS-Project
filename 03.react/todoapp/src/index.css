@@ -2,8 +2,11 @@
 
 @import url(./styles/reset.css);
 @import url(./styles/root.css);
+@import url(./pages/TodoInfo/todoinfo.css);
+@import url(./pages/TodoRegist/todoregist.css);
 @import url(./layout/Header/Header.css);
 @import url(./pages/TodoList/TodoList.css);
+
 
 * {
   margin: 0;
