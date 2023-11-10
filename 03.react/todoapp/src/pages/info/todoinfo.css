@@ -1,0 +1,77 @@
+.info-container {
+  width: 480px;
+  height: 500px;
+  padding: 30px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: var(--color-sub);
+}
+
+.button-container {
+  width: 110px;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 10px 5px;
+  order: 1;
+}
+
+.info-button {
+  width: 50px;
+  height: 30px;
+  background-color: var(--color-white);
+  font-size: 18px;
+  font-weight: 600;
+
+  border-radius: 5px;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.edit {
+  color: var(--color-main);
+  border: 1px solid var(--color-main);
+}
+
+.delete {
+  color: var(--color-cancel);
+  border: 1px solid var(--color-cancel);
+}
+
+.title-input {
+  font-size: 24px;
+  height: 30px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  order: 2;
+}
+
+.content-textarea {
+  font-size: 20px;
+  height: 300px;
+  font-weight: 400;
+  order: 4;
+  padding-top: 10px;
+}
+
+.title-input,
+.content-textarea {
+  width: 420px;
+  padding-left: 5px;
+  border-radius: 5px;
+}
+
+.title-input:focus,
+.content-textarea:focus {
+  box-shadow: 0 0 0 2px var(--color-main);
+}
+
+.time {
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0 0 10px 8px;
+  order: 3;
+}

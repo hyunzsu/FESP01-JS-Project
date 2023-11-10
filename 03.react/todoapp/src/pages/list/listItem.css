@@ -1,0 +1,82 @@
+.todolist {
+  width: 480px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.todo-item {
+  display: flex;
+  height: 60px;
+  margin: 10px 0;
+  border: 1px solid var(--color-border);
+  font-size: 20px;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.todo-item .checked {
+  text-decoration: line-through;
+}
+
+.todo-item::after {
+  display: inline-block;
+  width: 10px;
+  height: 17px;
+  background: url(../img/right-icon.svg) no-repeat;
+  content: "";
+}
+
+.checkbox-item {
+  width: 20px;
+  height: 20px;
+  margin: 0 20px;
+  line-height: normal; /* 글자가 살짝 위로 올라가 있는 현상 수정 필요 */
+  cursor: pointer;
+}
+
+.focus-item {
+  border: none;
+  background-color: var(--color-sub);
+  font-weight: 700;
+}
+
+.title-item {
+  overflow: hidden; /* 넘치는 컨텐츠를 가림 */
+  width: 390px;
+  white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
+
+  text-overflow: ellipsis;
+}
+
+.todo-item.focus-item::after {
+  display: inline-block;
+  width: 10px;
+  height: 17px;
+  background: url(../img/left-icon.svg) no-repeat;
+  content: "";
+}
+
+.list-container {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-inactive)
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-main);
+}
