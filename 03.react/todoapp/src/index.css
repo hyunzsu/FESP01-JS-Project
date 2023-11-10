@@ -4,6 +4,9 @@
 @import url(./styles/root.css);
 @import url(./pages/TodoInfo/todoinfo.css);
 @import url(./pages/TodoRegist/todoregist.css);
+@import url(./layout/Header/Header.css);
+@import url(./pages/TodoList/TodoList.css);
+
 
 * {
   margin: 0;
@@ -17,4 +20,25 @@
 
 ul {
   list-style: none;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  width: 1200px;
+  height: 800px;
+  padding: 40px 80px;
+}
+
+.contents-container {
+  width: 1040px;
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
