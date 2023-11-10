@@ -12,6 +12,7 @@ const TodoInfo = (props: TodoInfoProps) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [isDone, setIsDone] = useState(false);
+  const [updateTime, setUpdateTime] = useState("");
 
   let item: TodoItem;
 
@@ -22,13 +23,11 @@ const TodoInfo = (props: TodoInfoProps) => {
       );
       if (response.data.ok === 1) {
         item = response.data.item;
-        console.log("item=", item);
         setTitle(item.title);
         setContent(item.content);
         setIsDone(item.done);
+        setUpdateTime(item.updatedAt);
       }
-      // console.log(response);
-      console.log("api 불러오기.");
     } catch (e) {
       console.log(e);
     }
@@ -49,10 +48,8 @@ const TodoInfo = (props: TodoInfoProps) => {
           done: isDone,
         }
       );
-      console.log("업데이트.");
       if (response.data.ok === 1) {
         item = response.data.item;
-        console.log("업데이트 된 내용!!!!=", item);
       }
     }
   };
@@ -79,7 +76,7 @@ const TodoInfo = (props: TodoInfoProps) => {
           value={title}
           onChange={onChangeTitle}
         />
-        <div className="time"></div>
+        <div className="time">{updateTime}</div>
         <textarea
           className="content-textarea"
           placeholder="TODO 상세 내용을 입력하세요"
