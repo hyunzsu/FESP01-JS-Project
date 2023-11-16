@@ -6,6 +6,7 @@
 @import url(./pages/TodoRegist/todoregist.css);
 @import url(./layout/Header/Header.css);
 @import url(./pages/TodoList/TodoList.css);
+@import url(./components/SearchBar/SearchBar.css);
 
 html.dark {
   --color-main: #e67800;

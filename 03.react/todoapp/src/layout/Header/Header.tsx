@@ -1,7 +1,8 @@
-import axios from 'axios';
 import { useState, useEffect, MouseEvent } from 'react';
+import axios from 'axios';
 import { HiMoon, HiSun } from 'react-icons/hi';
 import { useDarkMode } from '../../context/DarkModeContext';
+import { SearchBar } from '@/components/_index';
 
 const Header = ({ setTodoItem }) => {
   const { darkMode, toggleDarkMode } = useDarkMode();
@@ -39,6 +40,7 @@ const Header = ({ setTodoItem }) => {
         {darkMode && <HiSun />}
       </button>
       <h1>TODO</h1>
+      <SearchBar />
       <div>
         {['All', 'Active', 'Completed'].map((item, index) => {
           return (
