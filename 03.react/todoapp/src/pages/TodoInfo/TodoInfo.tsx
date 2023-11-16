@@ -103,7 +103,6 @@ const TodoInfo = (props: TodoInfoProps) => {
           </button>
         </div>
       </div>
-      ;
     </section>
   );
 };
