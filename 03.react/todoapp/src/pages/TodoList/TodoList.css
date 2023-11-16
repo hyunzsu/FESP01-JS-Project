@@ -13,6 +13,7 @@
   align-items: center;
   border-radius: 10px;
   cursor: pointer;
+  color: var(--color-text);
 }
 
 .todo-item .checked {
@@ -24,7 +25,7 @@
   width: 10px;
   height: 17px;
   background: url(../img/right-icon.svg) no-repeat;
-  content: "";
+  content: '';
 }
 
 .checkbox-item {
@@ -54,7 +55,7 @@
   width: 10px;
   height: 17px;
   background: url(../img/left-icon.svg) no-repeat;
-  content: "";
+  content: '';
 }
 
 .list-container {
@@ -84,7 +85,7 @@
 .regist-button {
   width: 480px;
   height: 60px;
-  color: var(--color-white);
+  color: var(--color-add);
   font-size: 20px;
   font-weight: 600;
   background-color: var(--color-main);

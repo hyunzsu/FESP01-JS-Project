@@ -1,4 +1,4 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css');
 
 @import url(./styles/reset.css);
 @import url(./styles/root.css);
@@ -8,15 +8,24 @@
 @import url(./pages/TodoList/TodoList.css);
 @import url(./components/SearchBar/SearchBar.css);
 
+html.dark {
+  --color-main: #e67800;
+  --color-sub: #ffedd5;
+  --color-inactive: #ffcc89;
+  --color-white: #22243b;
+  --color-border: #e1e2e3;
+  --color-cancel: #808080;
+  --color-text: #fff;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Pretendard Variable", Pretendard, -apple-system,
-    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
-    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-family: 'Pretendard Variable', Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 }
 
 ul {
@@ -34,6 +43,7 @@ ul {
   width: 1200px;
   height: 800px;
   padding: 40px 80px;
+  background-color: var(--color-white);
 }
 
 .contents-container {

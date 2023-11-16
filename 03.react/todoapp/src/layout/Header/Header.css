@@ -31,3 +31,8 @@ header button {
 header button.active {
   color: var(--color-main);
 }
+
+.darkmode {
+  margin-left: 30px;
+  margin-top: 4px;
+}

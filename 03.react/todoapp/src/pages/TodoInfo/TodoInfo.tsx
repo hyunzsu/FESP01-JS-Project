@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import TodoDelete from "../../utils/TodoDelete";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import TodoDelete from '../../utils/TodoDelete';
 
 interface TodoInfoProps {
   id: number;
@@ -9,10 +9,10 @@ interface TodoInfoProps {
 const TodoInfo = (props: TodoInfoProps) => {
   const id = props.id;
   const [isUpdate, setIsUpdate] = useState(false);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const [isDone, setIsDone] = useState(false);
-  const [updateTime, setUpdateTime] = useState("");
+  const [updateTime, setUpdateTime] = useState('');
 
   let item: TodoItem;
 
@@ -66,39 +66,38 @@ const TodoInfo = (props: TodoInfoProps) => {
 
   return (
     <section>
-      <div className="info-container">
+      <div className='info-container'>
         <input
-          type="text"
-          placeholder="TODO 제목을 입력하세요"
-          className="title-input"
+          type='text'
+          placeholder='TODO 제목을 입력하세요'
+          className='title-input'
           disabled={isUpdate === true ? false : true}
           maxLength={25}
           value={title}
           onChange={onChangeTitle}
         />
-        <div className="time">{updateTime}</div>
+        <div className='time'>{updateTime}</div>
         <textarea
-          className="content-textarea"
-          placeholder="TODO 상세 내용을 입력하세요"
+          className='content-textarea'
+          placeholder='TODO 상세 내용을 입력하세요'
           disabled={isUpdate === true ? false : true}
           value={content}
           onChange={onChangeContent}
         ></textarea>
-        <div className="button-container">
-          <button onClick={handleUpdateButton} className="info-button edit">
-            {isUpdate === false ? "수정" : "완료"}
+        <div className='button-container'>
+          <button onClick={handleUpdateButton} className='info-button edit'>
+            {isUpdate === false ? '수정' : '완료'}
           </button>
           <button
             onClick={() => {
               TodoDelete(id);
             }}
-            className="info-button delete"
+            className='info-button delete'
           >
             삭제
           </button>
         </div>
       </div>
-      ;
     </section>
   );
 };
