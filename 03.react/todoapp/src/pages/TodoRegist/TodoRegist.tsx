@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const TodoRegist = () => {
-  const [show, setShow] = useState(true);
+const TodoRegist = ({ showRegist, setShowRegist }) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
@@ -24,6 +23,7 @@ const TodoRegist = () => {
       setTitle(event.target.value);
     }
   };
+
   const onChangeContent = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (event.target instanceof HTMLTextAreaElement)
       setContent(event.target.value);
@@ -32,7 +32,7 @@ const TodoRegist = () => {
   return (
     <section>
       <div
-        style={{ display: show ? 'block' : 'none' }}
+        style={{ display: showRegist ? 'block' : 'none' }}
         className='regist-container'
       >
         <form action=''>
@@ -46,7 +46,7 @@ const TodoRegist = () => {
             <button
               onClick={(e) => {
                 e.preventDefault();
-                setShow(false);
+                setShowRegist(false);
               }}
               className='regist-buttons cancel'
             >
