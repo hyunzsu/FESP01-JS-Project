@@ -5,7 +5,7 @@ import axios from 'axios';
 const TodoList = ({ todoItem, setTodoItem }) => {
   const [pageView, setPageView] = useState({});
   const [showRegist, setShowRegist] = useState(false);
-  const completedCount = todoItem.filter((item) => item.done).length;
+  const completedCount: number = todoItem.filter((item) => item.done).length;
 
   useEffect(() => {
     initializeTodoList();
@@ -53,7 +53,7 @@ const TodoList = ({ todoItem, setTodoItem }) => {
             할 일 추가하기
           </button>
           <p className='loading-task'>
-            {(completedCount / todoItem.length) * 100}% / 100%
+            {completedCount} / {todoItem.length} tasks
           </p>
           <div className='loading-bar-container' style={{ width: `${100}%` }}>
             <div
