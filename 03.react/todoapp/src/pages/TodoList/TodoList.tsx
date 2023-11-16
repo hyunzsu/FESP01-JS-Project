@@ -4,6 +4,7 @@ import axios from "axios";
 
 const TodoList = ({ todoItem, setTodoItem }) => {
   const [pageView, setPageView] = useState({});
+  const [showRegist, setShowRegist] = useState(false);
 
   useEffect(() => {
     initializeTodoList();
@@ -36,9 +37,9 @@ const TodoList = ({ todoItem, setTodoItem }) => {
 
   const openTodoRegist = () => {
     setPageView({ view: "todoRegist" });
+    setShowRegist(true);
   };
 
-  // 
   const openTodoInfo = (id) => {
     setPageView({ view: "todoInfo", id: id });
   };
@@ -73,7 +74,7 @@ const TodoList = ({ todoItem, setTodoItem }) => {
             ))}
           </ul>
         </div>
-        {pageView.view === "todoRegist" && <TodoRegist />}
+        {pageView.view === "todoRegist" && <TodoRegist showRegist={showRegist} setShowRegist={setShowRegist} />}
         {pageView.view === "todoInfo" && <TodoInfo id={pageView.id} />}
       </div>
     </div>
