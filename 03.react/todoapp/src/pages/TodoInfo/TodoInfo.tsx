@@ -11,10 +11,12 @@ const TodoInfo = (props: TodoInfoProps) => {
   const [isUpdate, setIsUpdate] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [imageSrc, setImageSrc] = useState("");
   const [isDone, setIsDone] = useState(false);
   const [updateTime, setUpdateTime] = useState("");
 
   let item: TodoItem;
+  let textSrc;
 
   const getTodoDetail = async () => {
     try {
@@ -23,8 +25,10 @@ const TodoInfo = (props: TodoInfoProps) => {
       );
       if (response.data.ok === 1) {
         item = response.data.item;
+        textSrc = item.content.split("*이미지값*")[0];
         setTitle(item.title);
-        setContent(item.content);
+        setContent(textSrc);
+        setImageSrc(item.content.split("*이미지값*")[1]);
         setIsDone(item.done);
         setUpdateTime(item.updatedAt);
       }
@@ -44,7 +48,7 @@ const TodoInfo = (props: TodoInfoProps) => {
         `http://localhost:33088/api/todolist/${id}`,
         {
           title: title,
-          content: content,
+          content: textSrc,
           done: isDone,
         }
       );
@@ -77,6 +81,7 @@ const TodoInfo = (props: TodoInfoProps) => {
           onChange={onChangeTitle}
         />
         <div className="time">{updateTime}</div>
+        {imageSrc && <img className="image-data" src={imageSrc} alt="Image" />}
         <textarea
           className="content-textarea"
           placeholder="TODO 상세 내용을 입력하세요"
@@ -84,7 +89,7 @@ const TodoInfo = (props: TodoInfoProps) => {
           value={content}
           onChange={onChangeContent}
         ></textarea>
-        <div className="button-container">
+        <div className="button-container-info">
           <button onClick={handleUpdateButton} className="info-button edit">
             {isUpdate === false ? "수정" : "완료"}
           </button>

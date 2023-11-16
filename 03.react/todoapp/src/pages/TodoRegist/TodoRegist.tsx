@@ -13,10 +13,7 @@ const TodoRegist = () => {
       `http://localhost:33088/api/todolist`,
       {
         title: title,
-        content: `${content} ${imageSrc.replace(
-          "data:image/jpeg;base64,",
-          ""
-        )}`,
+        content: `${content}*이미지값*${imageSrc}`,
       }
     );
     if (response.data.ok === 0) {

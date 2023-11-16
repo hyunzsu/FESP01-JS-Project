@@ -9,6 +9,16 @@
   background-color: var(--color-sub);
 }
 
+.button-container {
+  width: 210px;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 10px 5px;
+  order: 1;
+}
+
 .regist-title {
   font-size: 24px;
   height: 30px;
