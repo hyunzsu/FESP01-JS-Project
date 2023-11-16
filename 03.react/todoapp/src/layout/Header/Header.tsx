@@ -40,7 +40,7 @@ const Header = ({ setTodoItem }) => {
         {darkMode && <HiSun />}
       </button>
       <h1>TODO</h1>
-      <SearchBar />
+      <SearchBar setTodoItem={setTodoItem}/>
       <div>
         {['All', 'Active', 'Completed'].map((item, index) => {
           return (

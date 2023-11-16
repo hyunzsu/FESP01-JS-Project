@@ -1,25 +1,15 @@
 import { useState, useEffect } from "react";
-import { TodoInfo, TodoRegist } from "../_index";
 import axios from "axios";
+import { TodoInfo, TodoRegist } from "@/pages/_index";
+import { initializeTodoList } from "@/utils/_index";
 
 const TodoList = ({ todoItem, setTodoItem }) => {
   const [pageView, setPageView] = useState({});
   const [showRegist, setShowRegist] = useState(false);
 
   useEffect(() => {
-    initializeTodoList();
+    initializeTodoList(setTodoItem);
   }, []);
-
-  // TodoItem UI에 필요한 데이터 패칭
-  const initializeTodoList = async () => {
-    try {
-      const response = await axios("http://localhost:33088/api/todolist");
-      const { items } = response.data;
-      setTodoItem(items);
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   // 체크박스 업데이트 시 PATCH 통신
   const updateCheckBox = async (e, id) => {
