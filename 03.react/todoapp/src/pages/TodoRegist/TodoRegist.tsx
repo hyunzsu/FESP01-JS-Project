@@ -52,6 +52,23 @@ const TodoRegist = () => {
             >
               취소
             </button>
+            {/* 이미지 업로드 기능 추가 */}
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                // setShow(false);
+              }}
+              className="regist-buttons image"
+            >
+              image
+            </button>
+            <input
+              className="image-input"
+              type="file"
+              accept="image/*"
+              // multiple={true} 여러개 파일 업로드 속성
+            ></input>
+            {/* 이미지 업로드 기능 추가 */}
           </div>
           <input
             type="text"
