@@ -97,3 +97,27 @@
   margin-bottom: 20px;
   cursor: pointer;
 }
+
+.loading-task {
+  color: var(--color-main);
+  font-weight: bold;
+  text-align: left;
+  align-self: flex-start;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  font-size: 25px;
+}
+
+.loading-bar-container {
+  background-color: var(--color-sub);
+  height: 30px;
+  border-radius: 10px;
+  color: var(--color-add);
+}
+
+.loading-bar {
+  background-color: var(--color-main);
+  height: 30px;
+  border-radius: 10px;
+}
