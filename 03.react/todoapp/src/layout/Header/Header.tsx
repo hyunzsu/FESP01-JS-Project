@@ -2,6 +2,7 @@ import { useState, useEffect, MouseEvent } from 'react';
 import axios from 'axios';
 import { HiMoon, HiSun } from 'react-icons/hi';
 import { useDarkMode } from '../../context/DarkModeContext';
+import { SearchBar } from '@/components/_index';
 
 const Header = ({ setTodoItem }) => {
   const { darkMode, toggleDarkMode } = useDarkMode();
