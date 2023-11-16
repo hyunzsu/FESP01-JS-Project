@@ -5,6 +5,7 @@
 @import url(./pages/TodoInfo/todoinfo.css);
 @import url(./pages/TodoRegist/todoregist.css);
 @import url(./layout/Header/Header.css);
+@import url(./layout/Footer/Footer.css);
 @import url(./pages/TodoList/TodoList.css);
 @import url(./components/SearchBar/SearchBar.css);
 
