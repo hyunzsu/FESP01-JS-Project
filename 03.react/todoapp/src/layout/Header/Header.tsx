@@ -1,5 +1,6 @@
-import axios from "axios";
 import { useState, useEffect, MouseEvent } from "react";
+import axios from "axios";
+import { SearchBar } from '@/components/_index';
 
 const Header = ({ setTodoItem }) => {
   const [activeButton, setActiveButton] = useState("All");
@@ -32,6 +33,7 @@ const Header = ({ setTodoItem }) => {
   return (
     <header>
       <h1>TODO</h1>
+      <SearchBar />
       <div>
         {["All", "Active", "Completed"].map((item, index) => {
           return (
