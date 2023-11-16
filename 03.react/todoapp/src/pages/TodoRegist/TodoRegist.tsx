@@ -1,10 +1,10 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState } from 'react';
+import axios from 'axios';
 
 const TodoRegist = () => {
   const [show, setShow] = useState(true);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
 
   const handleRegistButton = async () => {
     const response: TodoResponse = await axios.post(
@@ -32,14 +32,14 @@ const TodoRegist = () => {
   return (
     <section>
       <div
-        style={{ display: show ? "block" : "none" }}
-        className="regist-container"
+        style={{ display: show ? 'block' : 'none' }}
+        className='regist-container'
       >
-        <form action="">
-          <div className="button-container">
+        <form action=''>
+          <div className='button-container'>
             <button
               onClick={handleRegistButton}
-              className="regist-buttons save"
+              className='regist-buttons save'
             >
               저장
             </button>
@@ -48,28 +48,27 @@ const TodoRegist = () => {
                 e.preventDefault();
                 setShow(false);
               }}
-              className="regist-buttons cancel"
+              className='regist-buttons cancel'
             >
               취소
             </button>
           </div>
           <input
-            type="text"
-            placeholder="TODO 제목을 입력하세요"
-            className="regist-title"
+            type='text'
+            placeholder='TODO 제목을 입력하세요'
+            className='regist-title'
             maxLength={25}
             value={title}
             onChange={onChangeTitle}
           />
           <textarea
-            className="regist-content"
-            placeholder="TODO 상세 내용을 입력하세요"
+            className='regist-content'
+            placeholder='TODO 상세 내용을 입력하세요'
             value={content}
             onChange={onChangeContent}
           ></textarea>
         </form>
       </div>
-      ;
     </section>
   );
 };
