@@ -1,21 +1,46 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
 
 const TodoRegist = () => {
   const [show, setShow] = useState(true);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [imageSrc, setImageSrc] = useState("");
+  const imageInput = useRef(null);
 
   const handleRegistButton = async () => {
     const response: TodoResponse = await axios.post(
       `http://localhost:33088/api/todolist`,
       {
         title: title,
-        content: content,
+        content: `${content} ${imageSrc.replace(
+          "data:image/jpeg;base64,",
+          ""
+        )}`,
       }
     );
     if (response.data.ok === 0) {
       console.log(response);
+    }
+  };
+
+  const handleImageButton = () => {
+    console.log("이미지 핸들 함수 동작");
+    imageInput.current.click();
+  };
+
+  const encodeFileToBase64 = (fileBlob: any) => {
+    console.log(fileBlob);
+    if (fileBlob) {
+      const reader = new FileReader();
+      reader.readAsDataURL(fileBlob);
+      reader.onload = (e: any) => {
+        setImageSrc(reader.result + "");
+      };
+      console.log("이미지 변환 완료");
+    } else {
+      setImageSrc("");
+      console.log("이미지 변환 실패");
     }
   };
 
@@ -56,6 +81,8 @@ const TodoRegist = () => {
             <button
               onClick={(e) => {
                 e.preventDefault();
+                handleImageButton();
+                console.log("이미지 업로드 버튼 클릭");
                 // setShow(false);
               }}
               className="regist-buttons image"
@@ -66,8 +93,12 @@ const TodoRegist = () => {
               className="image-input"
               type="file"
               accept="image/*"
-              // multiple={true} 여러개 파일 업로드 속성
-            ></input>
+              ref={imageInput}
+              multiple={true}
+              onChange={(e) => {
+                encodeFileToBase64(e.target.files[0]);
+              }}
+            />
             {/* 이미지 업로드 기능 추가 */}
           </div>
           <input
