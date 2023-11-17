@@ -5,14 +5,14 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [imageSrc, setImageSrc] = useState("");
-  const imageInput = useRef(null);
+  const imageInput = useRef<HTMLInputElement>(null);
 
   const handleRegistButton = async () => {
     const response: TodoResponse = await axios.post(
       `http://localhost:33088/api/todolist`,
       {
         title: title,
-        content: `${content}76*이미지값*${imageSrc}`,
+        content: `${content}*이미지값*${imageSrc}`,
       }
     );
     if (response.data.ok === 0) {
@@ -21,10 +21,12 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
   };
 
   const handleImageButton = () => {
-    imageInput.current.click();
+    if (imageInput.current) {
+      imageInput.current.click();
+    }
   };
 
-  const encodeFileToBase64 = (fileBlob: any) => {
+  const encodeFileToBase64 = (fileBlob: File) => {
     console.log(fileBlob);
     if (fileBlob) {
       const reader = new FileReader();
@@ -87,7 +89,9 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
               ref={imageInput}
               multiple={true}
               onChange={(e) => {
-                encodeFileToBase64(e.target.files[0]);
+                if (e.target.files && e.target.files.length > 0) {
+                  encodeFileToBase64(e.target.files[0]);
+                }
               }}
             />
           </div>
