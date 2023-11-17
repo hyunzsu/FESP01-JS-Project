@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
@@ -12,6 +13,8 @@ export default {
         cancel: '#808080',
         add: '#fff',
         text: '#22243b',
+        whiteDark: '#22243b',
+        textDark: '#fff',
       },
       boxShadow: {
         custom: '0 0 0 2px var(--color-main)', // 사용자 정의 박스 쉐도우
