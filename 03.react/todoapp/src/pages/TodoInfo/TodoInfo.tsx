@@ -16,7 +16,7 @@ const TodoInfo = (props: TodoInfoProps) => {
   const [updateTime, setUpdateTime] = useState('');
 
   let item: TodoItem;
-  let textSrc;
+  let textSrc: string;
 
   const getTodoDetail = async () => {
     try {
