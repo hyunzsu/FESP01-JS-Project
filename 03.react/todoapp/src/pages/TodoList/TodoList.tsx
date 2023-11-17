@@ -64,7 +64,7 @@ const TodoList = ({ todoItem, setTodoItem }) => {
               <li
                 key={item._id}
                 id={item._id}
-                className='flex h-[60px] my-[10px] border-[1px] border-solid border-border text-[20px] items-center rounded-[10px] cursor-pointer text-text after:inline-block after:w-[10px] after:h-[17px] after:empty-content'
+                className='flex h-[60px] my-[10px] border-[1px] border-solid border-border text-[20px] items-center rounded-[10px] cursor-pointer text-text after:inline-block after:w-[10px] after:h-[17px] after:empty-content dark:text-textDark'
                 onClick={() => openTodoInfo(item._id)}
               >
                 <input
