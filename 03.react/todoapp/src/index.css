@@ -31,7 +31,7 @@ ul {
 }
 
 #root {
-  @apply h-screen flex justify-center align-middle bg-white;
+  @apply h-screen flex justify-center align-middle bg-white dark:bg-whiteDark;
 }
 
 #app {
@@ -45,6 +45,5 @@ ul {
   --color-white: #22243b;
   --color-border: #e1e2e3;
   --color-cancel: #808080;
-  --color-text: #fff;
-}
-*/
+  --color-text: #fff; 
+} */
