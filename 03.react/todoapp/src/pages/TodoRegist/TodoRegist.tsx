@@ -13,7 +13,7 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
       {
         title: title,
         content: `${content}*이미지값*${imageSrc}`,
-      }
+      },
     );
     if (response.data.ok === 0) {
       console.log(response);
@@ -54,13 +54,13 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
     <section>
       <div
         style={{ display: showRegist ? "block" : "none" }}
-        className="w-[480px] h-[500px] p-[30px] ml-[20px] flex flex-col rounded-[10px] bg-sub"
+        className="ml-[20px] flex h-[500px] w-[480px] flex-col rounded-[10px] bg-sub p-[30px]"
       >
         <form action="">
-          <div className="w-[210px] h-[40px] flex justify-between items-center mt-0 mr-0 mb-[10px] ml-[5px]">
+          <div className="mb-[10px] ml-[5px] mr-0 mt-0 flex h-[40px] w-[210px] items-center justify-between">
             <button
               onClick={handleRegistButton}
-              className="w-[50px] h-[30px] bg-add text-[18px] font-semibold rounded-[5px] shadow-none cursor-pointer text-main border border-main"
+              className="h-[30px] w-[50px] cursor-pointer rounded-[5px] border border-main bg-add text-[18px] font-semibold text-main shadow-none"
             >
               저장
             </button>
@@ -69,7 +69,7 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
                 e.preventDefault();
                 setShowRegist(false);
               }}
-              className="w-[50px] h-[30px] bg-add text-[18px] font-semibold rounded-[5px] shadow-none cursor-pointer text-cancel border border-cancel"
+              className="h-[30px] w-[50px] cursor-pointer rounded-[5px] border border-cancel bg-add text-[18px] font-semibold text-cancel shadow-none"
             >
               취소
             </button>
@@ -78,7 +78,7 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
                 e.preventDefault();
                 handleImageButton();
               }}
-              className="w-[90px] h-[30px] bg-add text-[18px] font-semibold rounded-[5px] shadow-none cursor-pointer text-main border border-main"
+              className="h-[30px] w-[90px] cursor-pointer rounded-[5px] border border-main bg-add text-[18px] font-semibold text-main shadow-none"
             >
               image
             </button>
@@ -98,13 +98,13 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
           <input
             type="text"
             placeholder="TODO 제목을 입력하세요"
-            className="text-[24px] h-[30px] font-bold mb-[30px] order-1 w-[420px] pl-[5px] rounded-[5px]"
+            className="order-1 mb-[30px] h-[30px] w-[420px] rounded-[5px] pl-[5px] text-[24px] font-bold"
             maxLength={25}
             value={title}
             onChange={onChangeTitle}
           />
           <textarea
-            className="text-[20px] h-[300px] font-normal pt-[10px] order-2 w-[420px] pl-[5px] rounded-[5px]"
+            className="order-2 h-[300px] w-[420px] rounded-[5px] pl-[5px] pt-[10px] text-[20px] font-normal"
             placeholder="TODO 상세 내용을 입력하세요"
             value={content}
             onChange={onChangeContent}
