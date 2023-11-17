@@ -1,5 +1,9 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import url(./styles/reset.css);
 @import url(./styles/root.css);
 @import url(./pages/TodoInfo/todoinfo.css);
