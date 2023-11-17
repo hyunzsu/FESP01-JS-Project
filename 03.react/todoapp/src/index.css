@@ -31,15 +31,11 @@ ul {
 }
 
 #root {
-  @apply h-screen flex justify-center align-middle bg-white;
+  @apply h-screen flex justify-center align-middle bg-white dark:bg-whiteDark;
 }
 
 #app {
   @apply w-[1200px] h-[800px] py-[40px] px-[80px];
-}
-
-.contents-container {
-  @apply w-[1040px] h-[550px] flex flex-col flex-wrap;
 }
 
 /* html.dark {
@@ -49,13 +45,5 @@ ul {
   --color-white: #22243b;
   --color-border: #e1e2e3;
   --color-cancel: #808080;
-  --color-text: #fff;
-}
-
-.contents-container {
-  width: 1040px;
-  height: 550px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  --color-text: #fff; 
 } */
