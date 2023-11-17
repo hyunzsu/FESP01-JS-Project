@@ -20,7 +20,7 @@ const SearchBar = ({ setTodoItem }) => {
   return (
     <div className='flex items-center w-[500px] h-[40px] border-2 border-main border-solid rounded-[10px] py-0 px-[10px]'>
       <input
-        className='text-[#282828]'
+        className='text-[#282828] dark:text-textDark'
         type='text'
         placeholder='검색어를 입력해주세요'
         onBlur={handleSearch}
