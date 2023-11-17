@@ -70,7 +70,7 @@ const TodoInfo = (props: TodoInfoProps) => {
 
   return (
     <section>
-      <div className="w-[480px] h-[500px] p-[30px] ml-[20px] flex flex-col border-r-[10px] bg-sub">
+      <div className="w-[480px] h-[500px] p-[30px] ml-[20px] flex flex-col rounded-[10px] bg-sub">
         <input
           type="text"
           placeholder="TODO 제목을 입력하세요"
