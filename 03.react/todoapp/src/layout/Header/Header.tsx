@@ -34,10 +34,10 @@ const Header = ({ setTodoItem }) => {
   };
 
   return (
-    <header className='bg-white h-[80px] mb-[20px] flex items-center justify-between border-b border-border'>
-      <button onClick={toggleDarkMode} className='ml-[30px] mt-[4px]'>
-        {!darkMode && <HiMoon />}
-        {darkMode && <HiSun />}
+    <header className='h-[80px] mb-[20px] flex items-center justify-between border-b border-border'>
+      <button onClick={toggleDarkMode} className='ml-[33px] mt-[6px]'>
+        {!darkMode && <HiMoon className='w-[25px] h-[25px] text-inactive' />}
+        {darkMode && <HiSun className='w-[25px] h-[25px] text-inactive' />}
       </button>
       <h1 className='text-main ml-[10px] text-[40px] font-black'>TODO</h1>
       <SearchBar setTodoItem={setTodoItem} />
