@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import TodoDelete from "../../utils/TodoDelete";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import TodoDelete from '../../utils/TodoDelete';
 
 interface TodoInfoProps {
   id: number;
@@ -9,14 +9,14 @@ interface TodoInfoProps {
 const TodoInfo = (props: TodoInfoProps) => {
   const id = props.id;
   const [isUpdate, setIsUpdate] = useState(false);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [imageSrc, setImageSrc] = useState("");
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [imageSrc, setImageSrc] = useState('');
   const [isDone, setIsDone] = useState(false);
-  const [updateTime, setUpdateTime] = useState("");
+  const [updateTime, setUpdateTime] = useState('');
 
   let item: TodoItem;
-  let textSrc;
+  let textSrc: string;
 
   const getTodoDetail = async () => {
     try {
@@ -25,10 +25,10 @@ const TodoInfo = (props: TodoInfoProps) => {
       );
       if (response.data.ok === 1) {
         item = response.data.item;
-        textSrc = item.content.split("*이미지값*")[0];
+        textSrc = item.content.split('*이미지값*')[0];
         setTitle(item.title);
         setContent(textSrc);
-        setImageSrc(item.content.split("*이미지값*")[1]);
+        setImageSrc(item.content.split('*이미지값*')[1]);
         setIsDone(item.done);
         setUpdateTime(item.updatedAt);
       }
@@ -70,34 +70,45 @@ const TodoInfo = (props: TodoInfoProps) => {
 
   return (
     <section>
-      <div className="info-container">
+      <div className="w-[480px] h-[500px] p-[30px] ml-[20px] flex flex-col rounded-[10px] bg-sub">
         <input
           type="text"
           placeholder="TODO 제목을 입력하세요"
-          className="title-input"
+          className="text-[24px] h-[30px] font-[700] mb-[6px] order-2 w-[420px] pl-[5px] rounded-[5px] focus:shadow-custom"
           disabled={isUpdate === true ? false : true}
           maxLength={25}
           value={title}
           onChange={onChangeTitle}
         />
-        <div className="time">{updateTime}</div>
-        {imageSrc && <img className="image-data" src={imageSrc} alt="Image" />}
+        <div className="text-[12px] font-[400] mt-0 mr-0 mb-[10px] ml-[8px] order-3">
+          {updateTime}
+        </div>
+        {imageSrc && (
+          <img
+            className="rounded-[30px] w-[100px] h-[100px] m-auto p-[5px] order-4"
+            src={imageSrc}
+            alt="Image"
+          />
+        )}
         <textarea
-          className="content-textarea"
+          className="text-[20px] h-[300px] font-[400] order-5 pt-[10px] w-[420px] pl-[5px] rounded-[5px] focus:shadow-custom"
           placeholder="TODO 상세 내용을 입력하세요"
           disabled={isUpdate === true ? false : true}
           value={content}
           onChange={onChangeContent}
         ></textarea>
-        <div className="button-container-info">
-          <button onClick={handleUpdateButton} className="info-button edit">
-            {isUpdate === false ? "수정" : "완료"}
+        <div className="w-[110px] h-[40px] flex justify-between items-center mb-[10px] ml-[5px]">
+          <button
+            onClick={handleUpdateButton}
+            className="w-[50px] h-[30px] bg-add text-[18px] font-[600] rounded-[5px] shadow-none cursor-pointer text-main border-solid border-main border-[1px]"
+          >
+            {isUpdate === false ? '수정' : '완료'}
           </button>
           <button
             onClick={() => {
               TodoDelete(id);
             }}
-            className="info-button delete"
+            className="w-[50px] h-[30px] bg-add text-[18px] font-[600] rounded-[5px] shadow-none cursor-pointer text-cancel border-solid border-cancel border-[1px]"
           >
             삭제
           </button>
