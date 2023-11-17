@@ -13,6 +13,9 @@ export default {
         add: '#fff',
         text: '#22243b',
       },
+      boxShadow: {
+        custom: '0 0 0 2px var(--color-main)', // 사용자 정의 박스 쉐도우
+      },
     },
   },
   plugins: [],
