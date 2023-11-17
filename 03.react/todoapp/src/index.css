@@ -1,19 +1,47 @@
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css');
+/* @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css'); */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url(./styles/reset.css);
-@import url(./styles/root.css);
-@import url(./pages/TodoInfo/todoinfo.css);
-@import url(./pages/TodoRegist/todoregist.css);
-@import url(./layout/Header/Header.css);
-@import url(./layout/Footer/Footer.css);
-@import url(./pages/TodoList/TodoList.css);
-@import url(./components/SearchBar/SearchBar.css);
+* {
+  font-family:
+    'Pretendard Variable',
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    'Helvetica Neue',
+    'Segoe UI',
+    'Apple SD Gothic Neo',
+    'Noto Sans KR',
+    'Malgun Gothic',
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    sans-serif;
 
-html.dark {
+  @apply m-0 p-0 box-border;
+}
+
+ul {
+  @apply list-none;
+}
+
+#root {
+  @apply h-screen flex justify-center align-middle bg-white;
+}
+
+#app {
+  @apply w-[1200px] h-[800px] py-[40px] px-[80px];
+}
+
+.contents-container {
+  @apply w-[1040px] h-[550px] flex flex-col flex-wrap;
+}
+
+/* html.dark {
   --color-main: #e67800;
   --color-sub: #ffedd5;
   --color-inactive: #ffcc89;
@@ -23,38 +51,10 @@ html.dark {
   --color-text: #fff;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Pretendard Variable', Pretendard, -apple-system,
-    BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
-    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-}
-
-ul {
-  list-style: none;
-}
-
-#root {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--color-white);
-}
-
-#app {
-  width: 1200px;
-  height: 800px;
-  padding: 40px 80px;
-}
-
 .contents-container {
   width: 1040px;
   height: 550px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-}
+} */
