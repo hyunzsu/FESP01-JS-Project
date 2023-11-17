@@ -12,7 +12,7 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
       `http://localhost:33088/api/todolist`,
       {
         title: title,
-        content: `${content}*이미지값*${imageSrc}`,
+        content: `${content}76*이미지값*${imageSrc}`,
       }
     );
     if (response.data.ok === 0) {
@@ -21,7 +21,6 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
   };
 
   const handleImageButton = () => {
-    console.log("이미지 핸들 함수 동작");
     imageInput.current.click();
   };
 
@@ -33,10 +32,8 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
       reader.onload = (e: any) => {
         setImageSrc(reader.result + "");
       };
-      console.log("이미지 변환 완료");
     } else {
       setImageSrc("");
-      console.log("이미지 변환 실패");
     }
   };
 
@@ -74,13 +71,10 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
             >
               취소
             </button>
-            {/* 이미지 업로드 기능 추가 */}
             <button
               onClick={(e) => {
                 e.preventDefault();
                 handleImageButton();
-                console.log("이미지 업로드 버튼 클릭");
-                // setShow(false);
               }}
               className="regist-buttons image"
             >
@@ -96,7 +90,6 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
                 encodeFileToBase64(e.target.files[0]);
               }}
             />
-            {/* 이미지 업로드 기능 추가 */}
           </div>
           <input
             type="text"
