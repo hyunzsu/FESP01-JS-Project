@@ -5,7 +5,7 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [imageSrc, setImageSrc] = useState("");
-  const imageInput = useRef(null);
+  const imageInput = useRef<HTMLInputElement>(null);
 
   const handleRegistButton = async () => {
     const response: TodoResponse = await axios.post(
@@ -21,11 +21,12 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
   };
 
   const handleImageButton = () => {
-    console.log("이미지 핸들 함수 동작");
-    imageInput.current.click();
+    if (imageInput.current) {
+      imageInput.current.click();
+    }
   };
 
-  const encodeFileToBase64 = (fileBlob: any) => {
+  const encodeFileToBase64 = (fileBlob: File) => {
     console.log(fileBlob);
     if (fileBlob) {
       const reader = new FileReader();
@@ -33,10 +34,8 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
       reader.onload = (e: any) => {
         setImageSrc(reader.result + "");
       };
-      console.log("이미지 변환 완료");
     } else {
       setImageSrc("");
-      console.log("이미지 변환 실패");
     }
   };
 
@@ -55,13 +54,13 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
     <section>
       <div
         style={{ display: showRegist ? "block" : "none" }}
-        className="regist-container"
+        className="w-[480px] h-[500px] p-[30px] ml-[20px] flex flex-col rounded-[10px] bg-sub"
       >
         <form action="">
-          <div className="button-container">
+          <div className="w-[210px] h-[40px] flex justify-between items-center mt-0 mr-0 mb-[10px] ml-[5px]">
             <button
               onClick={handleRegistButton}
-              className="regist-buttons save"
+              className="w-[50px] h-[30px] bg-add text-[18px] font-semibold rounded-[5px] shadow-none cursor-pointer text-main border border-main"
             >
               저장
             </button>
@@ -70,44 +69,42 @@ const TodoRegist = ({ showRegist, setShowRegist }) => {
                 e.preventDefault();
                 setShowRegist(false);
               }}
-              className="regist-buttons cancel"
+              className="w-[50px] h-[30px] bg-add text-[18px] font-semibold rounded-[5px] shadow-none cursor-pointer text-cancel border border-cancel"
             >
               취소
             </button>
-            {/* 이미지 업로드 기능 추가 */}
             <button
               onClick={(e) => {
                 e.preventDefault();
                 handleImageButton();
-                console.log("이미지 업로드 버튼 클릭");
-                // setShow(false);
               }}
-              className="regist-buttons image"
+              className="w-[90px] h-[30px] bg-add text-[18px] font-semibold rounded-[5px] shadow-none cursor-pointer text-main border border-main"
             >
               image
             </button>
             <input
-              className="image-input"
+              className="hidden"
               type="file"
               accept="image/*"
               ref={imageInput}
               multiple={true}
               onChange={(e) => {
-                encodeFileToBase64(e.target.files[0]);
+                if (e.target.files && e.target.files.length > 0) {
+                  encodeFileToBase64(e.target.files[0]);
+                }
               }}
             />
-            {/* 이미지 업로드 기능 추가 */}
           </div>
           <input
             type="text"
             placeholder="TODO 제목을 입력하세요"
-            className="regist-title"
+            className="text-[24px] h-[30px] font-bold mb-[30px] order-1 w-[420px] pl-[5px] rounded-[5px]"
             maxLength={25}
             value={title}
             onChange={onChangeTitle}
           />
           <textarea
-            className="regist-content"
+            className="text-[20px] h-[300px] font-normal pt-[10px] order-2 w-[420px] pl-[5px] rounded-[5px]"
             placeholder="TODO 상세 내용을 입력하세요"
             value={content}
             onChange={onChangeContent}
