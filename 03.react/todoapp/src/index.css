@@ -37,10 +37,6 @@ ul {
   @apply w-[1200px] h-[800px] py-[40px] px-[80px];
 }
 
-.contents-container {
-  @apply w-[1040px] h-[550px] flex flex-col flex-wrap;
-}
-
 /* html.dark {
   --color-main: #e67800;
   --color-sub: #ffedd5;
@@ -50,11 +46,4 @@ ul {
   --color-cancel: #808080;
   --color-text: #fff;
 }
-
-.contents-container {
-  width: 1040px;
-  height: 550px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-} */
+*/

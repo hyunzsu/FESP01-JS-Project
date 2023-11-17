@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { TodoInfo, TodoRegist } from "@/pages/_index";
-import { initializeTodoList } from "@/utils/_index";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { TodoInfo, TodoRegist } from '@/pages/_index';
+import { initializeTodoList } from '@/utils/_index';
 
 const TodoList = ({ todoItem, setTodoItem }) => {
   const [pageView, setPageView] = useState({});
@@ -37,38 +37,47 @@ const TodoList = ({ todoItem, setTodoItem }) => {
 
   return (
     <div>
-      <div className='contents-container'>
-        <div className='list-container'>
-          <button className='regist-button' onClick={openTodoRegist}>
+      <div className='w-[1040px] h-[550px] flex flex-col flex-wrap'>
+        <div className='w-[500px] flex flex-col item-center pl-5'>
+          <button
+            className='w-[480px] h-[60px] text-add text-[20px] font-semibold bg-main flex items-center justify-center border-none rounded-[10px] mb-2.5 cursor-pointer'
+            onClick={openTodoRegist}
+          >
             할 일 추가하기
           </button>
-          <p className='loading-task'>
+          <p className='text-main font-bold text-left self-start m-1 text-2xl'>
             {completedCount} / {todoItem.length} tasks
           </p>
-          <div className='loading-bar-container' style={{ width: `${100}%` }}>
+          <div
+            className='bg-sub h-[30px] rounded-[10px] '
+            style={{ width: `${100}%` }}
+          >
             <div
-              className='loading-bar'
+              className='bg-main h-[30px] rounded-[10px]'
               style={{ width: `${(completedCount / todoItem.length) * 100}%` }}
             >
               {' '}
             </div>
           </div>
-          <ul className='todolist'>
+          <ul className='w-[480px] max-h-[420px] overflow-auto'>
             {todoItem.map((item) => (
               <li
                 key={item._id}
                 id={item._id}
-                className='todo-item'
+                className='flex h-[60px] my-[10px] border-[1px] border-solid border-border text-[20px] items-center rounded-[10px] cursor-pointer text-text after:inline-block after:w-[10px] after:h-[17px] after:empty-content'
                 onClick={() => openTodoInfo(item._id)}
               >
                 <input
-                  className='checkbox-item'
+                  className='w-[20px] h-[20px] mx-[20px] cursor-pointer leading-normal'
                   type='checkbox'
                   checked={item.done}
                   onChange={(e) => updateCheckBox(e, item._id)}
                 />
                 <span
-                  className={item.done ? 'checked title-item' : 'title-item'}
+                  className={`
+    ${item.done ? 'line-through' : ''} 
+    title-item overflow-hidden w-390 whitespace-nowrap overflow-ellipsis
+  `}
                 >
                   {item.title}
                 </span>
